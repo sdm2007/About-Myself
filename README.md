@@ -1,6 +1,6 @@
 # About-Myself
 # Hi there, I'm Saini Disha Mukesh! 👋
-
+I am coding since I was 14, the first language I learnt was HTML and then I started learning python since I was 15.
 I'm using this GitHub profile to track my learning progress from day one!
 
 ## 🚀 My 2026 Learning Roadmap
