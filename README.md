@@ -9,8 +9,6 @@ I have been coding since I was 14. The first language I learned was HTML, and I 
 
 ### 📊 My GitHub Stats:
 
-### 📊 My GitHub Stats:
-
 <p align="center">
   <a href="https://github.com/sdm2007">
     <img src="https://github-readme-stats-fast.vercel.app/api?username=sdm2007&show_icons=true&theme=radial&hide_border=true" alt="Your GitHub Stats" />
