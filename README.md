@@ -9,9 +9,9 @@ I have been coding since I was 14. The first language I learned was HTML, and I 
 
 ### 📊 My GitHub Stats:
 
-![Your GitHub Stats](https://github-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&show_icons=true&theme=radial&hide_border=true)
+![Your GitHub Stats](https://github-readme-stats.vercel.app/api?username=sdm2007&show_icons=true&theme=radial&hide_border=true)
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_GITHUB_USERNAME&layout=compact&theme=radial&hide_border=true)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=sdm2007&layout=compact&theme=radial&hide_border=true)
 
 ---
 "The best way to predict the future is to invent it." Let's code!
