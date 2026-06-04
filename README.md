@@ -19,4 +19,5 @@ I have been coding since I was 14. The first language I learned was HTML, and I 
 </p>
 
 ---
-"The best way to predict the future is to invent it." Let's code!
+**"The best way to predict the future is to invent it."**
+Let's code!
