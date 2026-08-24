@@ -21,7 +21,7 @@ I'm especially interested in the intersection of **software, hardware, creativit
 - 🌐 Built websites and web applications
 - 🗄️ Worked with Python & MySQL for school projects
 - 🤖 Interested in robotics, automation, and hardware
-- 🖨️ Revived and independently operated a 5–6 year old 3D printer in my school's ATL
+- 🖨️ Revived and independently operated a 3D printer in my school's ATL
 - 🧩 Created and printed multiple 3D models
 - 🤖 Exploring AI-assisted development and prompt engineering
 - 🎬 Have experience with video editing and creative AI tools
