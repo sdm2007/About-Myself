@@ -1,6 +1,6 @@
 # About-Myself
 # Hi there, I'm Saini Disha Mukesh! 👋
-I have been coding since I was 14. The first language I learned was HTML, and I started learning Python when I was 15.
+I have been coding since I was 14. The first language I learned was HTML, and I started learning Python when I was 16.
 
 ## 🛠️ Languages I know:
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
