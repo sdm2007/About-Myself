@@ -115,17 +115,11 @@ I had no prior experience with that specific printer, but managed to get it work
 
 ---
 
-## 🌱 Currently Learning
+📊 GitHub Stats
+<p align="center">
 
-```text
-Python
-   ↓
-Programming Fundamentals
-   ↓
-Data Structures & Algorithms
-   ↓
-Git & GitHub
-   ↓
-Web Development
-   ↓
-Robotics & Hardware
+<img src="https://github-readme-stats-fast.vercel.app/api?username=sdm2007&show_icons=true&theme=radical&hide_border=true" alt="Disha's GitHub Stats" />
+
+<img src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=sdm2007&layout=compact&theme=radical&hide_border=true" alt="Disha's Top Languages" />
+
+</p>
