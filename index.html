@@ -12,10 +12,10 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%230F766E'/><text x='50' y='68' font-size='56' font-family='sans-serif' font-weight='700' text-anchor='middle' fill='white'>D</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --sans:'Archivo',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;--bg:#FBFBFA;--surface:#FFFFFF;--surface-hover:#F4F4F2;
+  --sans:'Roboto Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--serif:var(--sans);--mono:var(--sans);--bg:#FBFBFA;--surface:#FFFFFF;--surface-hover:#F4F4F2;
   --text-main:#1C1C1A;--text-muted:#666660;
   --accent:#0F766E;--accent-light:#F0FDF9;
   --border:#E5E5E0;--radius:12px;
@@ -49,7 +49,7 @@ header.hero{position:relative;padding:3rem var(--pad);border-bottom:1px solid va
 .status-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2.4s ease-out infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(13,148,136,.45)}70%,100%{box-shadow:0 0 0 8px rgba(13,148,136,0)}}
 h1{font-size:clamp(2.2rem,6vw,3.25rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:.75rem}
-.hero h1{font-size:clamp(3rem,9vw,6.5rem);margin-bottom:1rem}
+.hero h1{font-size:clamp(2.2rem,6vw,4.5rem);margin-bottom:1rem}
 .role{font-family:var(--sans);font-size:1rem;color:var(--accent);min-height:1.6em;margin-bottom:1.25rem}
 .hero .role{font-size:clamp(1.05rem,2vw,1.4rem);margin-bottom:1.5rem}
 .role .cursor{display:inline-block;width:2px;height:1.05em;background:var(--accent);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(2) infinite}
@@ -234,7 +234,7 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
   .ledger-row{grid-template-columns:1fr;gap:.35rem}
 }
 @media (max-width:640px){
-  .menu a{padding:.3rem .4rem;font-size:.7rem}
+  .menu a{padding:.3rem .3rem;font-size:.74rem}
   .brand{display:none}
   .topbar-inner{justify-content:center}
   .feat{grid-template-columns:1fr}
@@ -245,9 +245,14 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
 .pins th,.code{font-family:var(--mono)}
+h1,h2,h3,.brand,.hero h1,.detail h1,.item-content h3,.ledger-row h3,.infocard h3{font-family:var(--serif);font-weight:400}
+h2{font-size:1.7rem}
+.item-content h3,.ledger-row h3{font-size:1.55rem}
+.pn b{font-family:var(--serif);font-weight:400;font-size:1.1rem}
 .hero-3d{position:relative;cursor:grab;touch-action:pan-y}
 .hero-3d:active{cursor:grabbing}
 .hero-3d .hint{position:absolute;left:0;bottom:0;z-index:1;font-size:.85rem;color:var(--text-muted);pointer-events:none}
+h1,h2,h3,.brand,.hero h1,.detail h1,.item-content h3,.ledger-row h3,.infocard h3,.pn b{font-weight:600;overflow-wrap:break-word}
 </style>
 </head>
 <body>
@@ -664,9 +669,9 @@ addEventListener('hashchange',route);route();
   function letter(ch,fg){
     const c=document.createElement('canvas');c.width=c.height=256;
     const x=c.getContext('2d'),tex=new T.CanvasTexture(c);
-    const draw=()=>{x.clearRect(0,0,256,256);x.fillStyle=fg;x.font='700 170px Archivo,system-ui,sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText(ch,128,138);tex.needsUpdate=true};
+    const draw=()=>{x.clearRect(0,0,256,256);x.fillStyle=fg;x.font="700 150px 'Roboto Mono',monospace";x.textAlign='center';x.textBaseline='middle';x.fillText(ch,128,138);tex.needsUpdate=true};
     draw();
-    if(document.fonts&&document.fonts.load)document.fonts.load('700 170px Archivo').then(draw).catch(()=>{});
+    if(document.fonts&&document.fonts.load)document.fonts.load('700 150px Roboto Mono').then(draw).catch(()=>{});
     return tex;
   }
   function token(ch,face,fg){
