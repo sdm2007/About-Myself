@@ -151,6 +151,14 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
 .pn b{font-weight:600}
 .pn .next{text-align:right}
 
+/* team credits */
+.item-content .with{font:.78rem 'JetBrains Mono',monospace;color:var(--text-muted);margin-top:.6rem}
+.with b{font-weight:500;color:var(--accent)}
+.team{display:flex;flex-wrap:wrap;gap:.6rem}
+.person{display:inline-flex;align-items:center;gap:.6rem;padding:.4rem 1rem .4rem .4rem;border:1px solid var(--border);background:var(--surface);border-radius:100px;font-weight:500;font-size:.95rem}
+.person span.who{display:flex;flex-direction:column;line-height:1.25}
+.person small{font:400 .72rem 'JetBrains Mono',monospace;color:var(--text-muted)}
+.person i{font:500 .72rem 'JetBrains Mono',monospace;font-style:normal;width:1.9rem;height:1.9rem;border-radius:50%;display:grid;place-items:center;background:var(--accent-light);color:var(--accent);border:1px solid rgba(13,148,136,.2)}
 
 /* shiyank 3D stage, pin table, steps */
 .stage{position:relative;border:1px solid var(--border);border-radius:var(--radius);background:radial-gradient(70% 80% at 50% 38%,var(--accent-light),var(--surface) 78%);overflow:hidden}
@@ -300,6 +308,7 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
         <div class="item-content">
           <h3><a class="card-link" href="#project-jamghat">jamGhat</a> <span class="badge">live</span></h3>
           <p>A hyperlocal marketplace for finding local shops, checking stock and prices, and getting the shortest route.</p>
+          <div class="with">Terms, privacy policy &amp; marketing by <b>Jyoti Mishra</b></div>
         </div>
         <div class="meta-tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Supabase</span><span class="tag">Render</span></div>
         <a href="https://jamghat.thesrock.in" class="item-action" target="_blank" rel="noopener noreferrer">Live app &nearr;</a>
@@ -318,6 +327,7 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
         <div class="item-content">
           <h3><a class="card-link" href="#project-shiyank">Shiyank</a></h3>
           <p>An IoT water-testing device that reads sensors and shows the results on a display.</p>
+          <div class="with">Team of 5: <b>Manshi Dwivedi, Purnima Rajwade, Shivani Dhama, Jyoti Mishra</b></div>
         </div>
         <div class="meta-tags"><span class="tag">C++</span><span class="tag">ESP32</span><span class="tag">Microcontrollers</span></div>
         <a href="https://wokwi.com/projects/479492563395301377" class="item-action" target="_blank" rel="noopener noreferrer">Simulation &nearr;</a>
@@ -327,6 +337,7 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
         <div class="item-content">
           <h3><a class="card-link" href="#project-learnocrat">Learnocrat</a> <span class="badge">in progress</span></h3>
           <p>A study-resource platform where students share notes and past papers, and AI sorts every upload.</p>
+          <div class="with">Terms, privacy policy &amp; marketing by <b>Jyoti Mishra</b></div>
         </div>
         <div class="meta-tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MySQL</span><span class="tag">Claude API</span></div>
         <a href="https://github.com/sdm2007/learnocrat" class="item-action" target="_blank" rel="noopener noreferrer">Source &nearr;</a>
@@ -390,6 +401,10 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
   <dl class="facts"><div class="fact"><dt>Category</dt><dd>Web app</dd></div><div class="fact"><dt>Status</dt><dd>Live</dd></div><div class="fact"><dt>Hosting</dt><dd>Render</dd></div><div class="fact"><dt>Database</dt><dd>Supabase Postgres</dd></div></dl>
   <section><h2>Overview</h2><div class="two"><p class="body">Shoppers search for a product or service and see nearby shops with opening hours, stock status and listed prices, without needing an account. Shop owners register, verify their email and manage their own listing.</p><p class="body">The frontend is React with Tailwind and Vite, served by a Node.js and Express backend. Data lives in Supabase Postgres, shop photos in Supabase Storage, and the site runs on Render.</p></div></section>
   <section><h2>Key features</h2><ul class="feat"><li>Search across shops, categories and individual items</li><li>Live GPS location, a map of nearby shops and the shortest route (Leaflet and OpenStreetMap)</li><li>Market price range that compares the same item across shops</li><li>Stock labels worked out from quantity: in stock, low and out of stock</li><li>Opening hours, with a one-day "closed today" override</li><li>Home service radar for repair and service providers</li><li>Owner dashboard for profile, inventory, hours and photos</li><li>Email verification, admin approval of new shops and admin review of photos</li><li>English and Hindi interface</li><li>Privacy policy, terms and cookie consent</li></ul></section>
+  <section><h2>Team</h2><div class="team">
+    <span class="person"><i aria-hidden="true">DS</i><span class="who">Disha Saini<small>Full-stack development</small></span></span>
+    <span class="person"><i aria-hidden="true">JM</i><span class="who">Jyoti Mishra<small>Terms &amp; conditions, privacy policy, marketing</small></span></span>
+  </div></section>
   <section><h2>Built with</h2><div class="tech"><span class="tag">React</span><span class="tag">Vite</span><span class="tag">Tailwind CSS</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">PostgreSQL</span><span class="tag">Supabase</span><span class="tag">Leaflet</span><span class="tag">Render</span></div></section>
   <nav class="pn" aria-label="More projects">
     <a href="#project-icms"><small>Previous</small><b>Integrated Company Management System</b></a>
@@ -436,7 +451,15 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
     </div>
   </section>
 
-  <section><h2>Overview</h2><div class="two"><p class="body">Shiyank is a student prototype of a water quality tester. Water runs through a pipe past four probes: pH, TDS, turbidity and temperature. An ESP32 reads them and shows the results on a display on the front of the box.</p><p class="body">It is an educational screening prototype, not a certified drinking-water safety device. Hardness is tested separately with a drop-test kit, because a TDS sensor cannot give calcium or magnesium hardness.</p></div></section>
+  <section><h2>Overview</h2><div class="two"><p class="body">Shiyank is a team prototype of a water quality tester. Water runs through a pipe past four probes: pH, TDS, turbidity and temperature. An ESP32 reads them and shows the results on a display on the front of the box.</p><p class="body">It is an educational screening prototype, not a certified drinking-water safety device. Hardness is tested separately with a drop-test kit, because a TDS sensor cannot give calcium or magnesium hardness.</p></div></section>
+
+  <section><h2>Team</h2><div class="team">
+    <span class="person"><i aria-hidden="true">DS</i><span class="who">Disha Saini<small>CSE student</small></span></span>
+    <span class="person"><i aria-hidden="true">MD</i><span class="who">Manshi Dwivedi<small>Data Science student</small></span></span>
+    <span class="person"><i aria-hidden="true">PR</i><span class="who">Purnima Rajwade<small>CSE student</small></span></span>
+    <span class="person"><i aria-hidden="true">SD</i><span class="who">Shivani Dhama<small>Mechanical Engineering student</small></span></span>
+    <span class="person"><i aria-hidden="true">JM</i><span class="who">Jyoti Mishra<small>ECE student</small></span></span>
+  </div></section>
 
   <section><h2>How the box is arranged</h2><ul class="feat"><li><b>Wet side (back).</b> The pipe runs from the inlet on one side to the outlet on the other. All four probes sit inside it through sealed fittings.</li><li><b>Partition plate.</b> Separates the pipe from the circuit. The sensor boards are mounted on its dry face, so only the probes touch water.</li><li><b>Dry side (front).</b> The ESP32 reads the sensor boards and drives the front display. A USB port on the side supplies 5 V.</li></ul></section>
 
@@ -496,6 +519,10 @@ if (sampleState == SETTLING &amp;&amp; millis() - sampleStartTime &gt;= SETTLING
   <dl class="facts"><div class="fact"><dt>Category</dt><dd>Full-stack web app</dd></div><div class="fact"><dt>Status</dt><dd>In progress</dd></div><div class="fact"><dt>Origin</dt><dd>SLAB WebCMD Hackathon</dd></div><div class="fact"><dt>Database</dt><dd>MySQL</dd></div></dl>
   <section><h2>Overview</h2><div class="two"><p class="body">Notes and previous-year papers end up scattered across chat groups and drives. Learnocrat puts them in one place, organised by course, semester and subject. I built it under the name Prior Art for the SLAB WebCMD Hackathon, and it is still in development.</p><p class="body">Uploads are processed in the background. Text is pulled out of PDFs, Word files, text files and images (with OCR for scans), then Claude suggests the subject, type, exam and year. The uploader reviews it before anything is published.</p></div></section>
   <section><h2>Key features</h2><ul class="feat"><li>Upload PDF, DOCX, TXT and image files up to 20 MB</li><li>Text extraction, with OCR for scanned pages</li><li>AI classification into subject, content type, exam type, year and professor</li><li>A review step, so nothing is published until the uploader confirms</li><li>Duplicate checks using file hashes and similar-resource suggestions</li><li>Search by filters, keywords or a plain-language AI question</li><li>Karma system: earn karma for uploads, spend it on downloads after three free ones</li><li>Voting, comments, reporting and admin moderation</li><li>Background job queue with retries</li></ul></section>
+  <section><h2>Team</h2><div class="team">
+    <span class="person"><i aria-hidden="true">DS</i><span class="who">Disha Saini<small>Full-stack development</small></span></span>
+    <span class="person"><i aria-hidden="true">JM</i><span class="who">Jyoti Mishra<small>Terms &amp; conditions, privacy policy, marketing</small></span></span>
+  </div></section>
   <section><h2>Built with</h2><div class="tech"><span class="tag">React</span><span class="tag">Vite</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MySQL</span><span class="tag">Tesseract.js</span><span class="tag">Claude API</span><span class="tag">JWT</span></div></section>
   <nav class="pn" aria-label="More projects">
     <a href="#project-shiyank"><small>Previous</small><b>Shiyank</b></a>
