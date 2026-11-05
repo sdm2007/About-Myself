@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disha Saini | First-Year CSE Student & Developer</title>
+<meta name="description" content="Portfolio of Disha Saini, a CSE student at RJIT Gwalior building full-stack apps, study tools and IoT projects.">
+<meta name="theme-color" content="#0D9488">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%230D9488'/><text x='50' y='68' font-size='56' font-family='sans-serif' font-weight='700' text-anchor='middle' fill='white'>D</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBFBFA;--surface:#FFFFFF;--surface-hover:#F4F4F2;
+  --text-main:#1C1C1A;--text-muted:#666660;
+  --accent:#0D9488;--accent-light:#F0FDF9;
+  --border:#E5E5E0;--radius:12px;
+  --pad:clamp(1.25rem,6vw,7rem);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5rem}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--text-main);line-height:1.6;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-999px;top:.5rem;background:var(--accent);color:#fff;padding:.5rem .9rem;border-radius:8px;z-index:100}
+.skip:focus{left:.5rem}
+
+/* progress + nav */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:60}
+.topbar{position:sticky;top:0;z-index:50;padding:0 var(--pad);background:rgba(251,251,250,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.topbar-inner{height:3.5rem;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:700;letter-spacing:-.02em;text-decoration:none}
+.menu{display:flex;gap:.25rem;font-family:'JetBrains Mono',monospace;font-size:.8rem}
+.menu a{text-decoration:none;color:var(--text-muted);padding:.35rem .7rem;border-radius:100px;transition:color .15s,background .15s}
+.menu a:hover{color:var(--text-main);background:var(--surface-hover)}
+.menu a.active{color:var(--accent);background:var(--accent-light)}
+
+.container{padding:4rem var(--pad) 5rem}
+
+/* hero */
+header.hero{position:relative;padding:3rem var(--pad);border-bottom:1px solid var(--border);min-height:calc(100vh - 3.5rem);min-height:calc(100svh - 3.5rem);display:flex;align-items:center;background:radial-gradient(60% 70% at 85% 15%,var(--accent-light),transparent 70%),var(--bg)}
+.hero-inner{width:100%;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:2rem;align-items:center}
+.status-pill{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent-light);color:var(--accent);padding:.35rem .85rem;border-radius:100px;font-size:.85rem;font-weight:500;margin-bottom:1.25rem;border:1px solid rgba(13,148,136,.15)}
+.status-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(13,148,136,.45)}70%,100%{box-shadow:0 0 0 8px rgba(13,148,136,0)}}
+h1{font-size:clamp(2.2rem,6vw,3.25rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:.75rem}
+.hero h1{font-size:clamp(3rem,9vw,6.5rem);margin-bottom:1rem}
+.role{font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--accent);min-height:1.6em;margin-bottom:1.25rem}
+.hero .role{font-size:clamp(1.05rem,2vw,1.4rem);margin-bottom:1.5rem}
+.role .cursor{display:inline-block;width:2px;height:1.05em;background:var(--accent);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.bio{font-size:1.1rem;color:var(--text-muted);max-width:60ch;margin-bottom:1.75rem}
+.hero .bio{font-size:clamp(1.1rem,1.6vw,1.3rem);margin-bottom:2rem}
+.hero-3d{height:min(70vh,680px);min-height:320px}
+.hero-3d canvas,.contact-3d canvas{display:block;width:100%;height:100%}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}
+.btn{font:500 .9rem 'Plus Jakarta Sans',sans-serif;display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.1rem;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text-main);text-decoration:none;cursor:pointer;transition:transform .15s,border-color .15s,background .15s}
+.btn:hover{border-color:var(--accent);transform:translateY(-1px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:#0B7F75}
+.nav-links{display:flex;flex-wrap:wrap;gap:1.25rem;font-family:'JetBrains Mono',monospace;font-size:.85rem;margin-top:1.5rem}
+.nav-links a{text-decoration:none;border-bottom:1px dashed var(--text-muted);padding-bottom:2px;transition:color .15s,border-color .15s}
+.nav-links a:hover{color:var(--accent);border-color:var(--accent)}
+
+/* sections */
+section{margin-bottom:5rem}
+h2{font-size:1.25rem;font-weight:600;letter-spacing:-.01em;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
+h2::after{content:"";flex:1;height:1px;background:var(--border)}
+.count{font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:500;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);padding:.1rem .5rem;border-radius:100px}
+
+/* about: bio on the left, interests on the right, so the whole width is used */
+.about-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4rem;align-items:start}
+.about p{color:var(--text-muted);font-size:clamp(1.05rem,1.5vw,1.3rem);line-height:1.75;margin-bottom:1.25rem;max-width:56ch}
+.about p:last-child{color:var(--text-main);font-weight:500}
+
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.25rem}
+.chip{font:500 .8rem 'JetBrains Mono',monospace;padding:.4rem .8rem;border-radius:100px;border:1px solid var(--border);background:var(--surface);color:var(--text-muted);cursor:pointer;transition:all .15s}
+.chip:hover{color:var(--text-main);border-color:#D1D1CB}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* row-style lists */
+.item-list{display:flex;flex-direction:column;border-bottom:1px solid var(--border)}
+.item-card{position:relative;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(15rem,1fr) 7rem;align-items:start;gap:2rem;padding:1.75rem 0;border-top:1px solid var(--border);transition:padding .2s}
+.item-card:hover{padding-left:.75rem}
+.item-card[hidden]{display:none}
+.item-card.pop{animation:pop .3s ease}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.item-list.plain .item-card{display:block}
+.ledger{border-bottom:1px solid var(--border)}
+.ledger-row{display:grid;grid-template-columns:9rem minmax(0,1fr) minmax(0,1.4fr);gap:2rem;align-items:baseline;padding:1.6rem 0;border-top:1px solid var(--border)}
+.ledger-row .kind{font:500 .8rem 'JetBrains Mono',monospace;color:var(--accent)}
+.ledger-row h3{font-size:1.35rem;font-weight:600;letter-spacing:-.01em}
+.ledger-row p{color:var(--text-muted);font-size:1rem}
+.item-content{min-width:0}
+.item-content h3{font-size:1.35rem;font-weight:600;letter-spacing:-.01em;margin-bottom:.35rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.item-content p{font-size:1rem;color:var(--text-muted);max-width:62ch}
+.card-link{text-decoration:none;color:inherit}
+.card-link:hover{color:var(--accent)}
+.card-link::after{content:"";position:absolute;inset:0}
+.badge{font:500 .7rem 'JetBrains Mono',monospace;color:var(--accent);background:var(--accent-light);border:1px solid rgba(13,148,136,.2);padding:.1rem .45rem;border-radius:100px}
+.meta-tags{display:flex;flex-wrap:wrap;gap:.4rem;padding-top:.45rem}
+.tag{font-family:'JetBrains Mono',monospace;font-size:.75rem;background:var(--bg);color:var(--text-muted);padding:.2rem .5rem;border-radius:4px;border:1px solid var(--border)}
+.item-action{position:relative;z-index:1;justify-self:end;padding-top:.55rem!important;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--accent);text-decoration:none;white-space:nowrap;font-weight:500;padding:.25rem 0}
+.item-action:hover{text-decoration:underline}
+.empty{display:none;color:var(--text-muted);font-size:.95rem;padding:1rem 0}
+
+/* tech */
+.tech{display:flex;flex-wrap:wrap;gap:.6rem}
+.tech .tag{padding:.45rem .8rem;font-size:.85rem;cursor:default;transition:color .15s,border-color .15s,background .15s,transform .15s}
+.tech .tag:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-light);transform:translateY(-2px)}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.contact p{color:var(--text-muted);font-size:clamp(1.05rem,1.5vw,1.3rem);max-width:50ch;margin-bottom:1.5rem}
+.contact-3d{height:340px}
+
+footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;color:var(--text-muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+
+/* toast + top */
+#toast{position:fixed;left:50%;bottom:1.5rem;transform:translate(-50%,20px);background:var(--text-main);color:#fff;font-size:.85rem;padding:.6rem 1rem;border-radius:10px;opacity:0;pointer-events:none;transition:all .25s;z-index:90}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+#top{position:fixed;right:1.25rem;bottom:1.25rem;width:2.6rem;height:2.6rem;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--accent);font-size:1.1rem;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s,border-color .15s;z-index:55}
+#top.show{opacity:1;pointer-events:auto}
+#top:hover{border-color:var(--accent)}
+
+/* project pages */
+.view[hidden],#home[hidden]{display:none}
+.detail{padding:3rem var(--pad) 3rem}
+.crumb{font:.85rem 'JetBrains Mono',monospace;color:var(--text-muted);margin-bottom:1.5rem}
+.crumb a{text-decoration:none;border-bottom:1px dashed var(--text-muted)}
+.crumb a:hover{color:var(--accent);border-color:var(--accent)}
+.detail h1{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap}
+.lede{font-size:1.25rem;color:var(--text-muted);max-width:60ch;margin-bottom:1.5rem}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem 2rem;margin:2rem 0 3rem}
+.fact{border-top:1px solid var(--border);padding:.9rem 0}
+.fact dt{font-size:.8rem;color:var(--text-muted)}
+.fact dd{font-weight:600}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 3rem}
+.body{color:var(--text-muted);font-size:1.1rem;line-height:1.75}
+.feat{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:.9rem 3rem}
+.feat li{position:relative;padding-left:1.6rem}
+.feat li::before{content:"";position:absolute;left:0;top:.6em;width:.5rem;height:.5rem;border-radius:50%;background:var(--accent)}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem}
+.pn a{border-top:1px solid var(--border);padding:1rem 0;text-decoration:none;transition:border-color .15s,transform .2s}
+.pn a:hover{border-color:var(--accent);transform:translateY(-2px)}
+.pn small{display:block;color:var(--text-muted);font:.75rem 'JetBrains Mono',monospace}
+.pn b{font-weight:600}
+.pn .next{text-align:right}
+
+
+/* shiyank 3D stage, pin table, steps */
+.stage{position:relative;border:1px solid var(--border);border-radius:var(--radius);background:radial-gradient(70% 80% at 50% 38%,var(--accent-light),var(--surface) 78%);overflow:hidden}
+.stage canvas{display:block;width:100%;height:clamp(340px,64vh,640px);cursor:grab;touch-action:pan-y;outline-offset:-3px}
+.stage canvas:active{cursor:grabbing}
+.labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.lbl{position:absolute;left:0;top:0;transform:translate(-50%,-50%);font:500 .68rem 'JetBrains Mono',monospace;background:rgba(255,255,255,.93);border:1px solid var(--border);border-radius:4px;padding:.05rem .35rem;white-space:nowrap;transition:opacity .25s}
+.nolabels .lbl{opacity:0}
+.stage-msg{position:absolute;left:1rem;top:.9rem;max-width:min(26rem,60%);font:.8rem 'JetBrains Mono',monospace;color:var(--text-muted);pointer-events:none}
+.readout{position:absolute;right:1rem;top:.9rem;background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:10px;padding:.6rem .85rem;font:.75rem 'JetBrains Mono',monospace;display:grid;grid-template-columns:auto auto;gap:.15rem 1rem}
+.readout[hidden]{display:none}
+.readout b{font-weight:500;color:var(--accent);text-align:right}
+.readout small{grid-column:1/-1;color:var(--text-muted);font-size:.68rem;margin-top:.2rem}
+.stage-bar{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:.85rem 1rem;border-top:1px solid var(--border);background:var(--surface)}
+.stage-bar .btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.stage-note{margin-left:auto;font:.78rem 'JetBrains Mono',monospace;color:var(--text-muted)}
+.table-wrap{overflow-x:auto}
+.pins{width:100%;border-collapse:collapse;font-size:1rem}
+.pins th{font:500 .8rem 'JetBrains Mono',monospace;text-align:left;color:var(--text-muted);padding:.7rem 1.5rem .7rem 0;border-bottom:1px solid var(--border);white-space:nowrap}
+.pins td{padding:.85rem 1.5rem .85rem 0;border-bottom:1px solid var(--border);vertical-align:top}
+.pins td:first-child{font-weight:600}
+.sw{display:inline-flex;align-items:center;gap:.5rem}
+.sw::before{content:"";width:.75rem;height:.75rem;border-radius:50%;background:var(--c)}
+.table-note{color:var(--text-muted);margin-top:1rem;max-width:70ch}
+.steps{list-style:none;counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem 3rem}
+.steps li{counter-increment:s;position:relative;padding-left:2.6rem;color:var(--text-muted)}
+.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:.1em;font:500 .85rem 'JetBrains Mono',monospace;color:var(--accent)}
+.steps b{display:block;color:var(--text-main);font-weight:600}
+
+.states{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin:0 0 1.75rem;font:500 .85rem 'JetBrains Mono',monospace}
+.states span{border:1px solid var(--border);background:var(--surface);border-radius:8px;padding:.5rem .85rem}
+.states small{display:block;color:var(--text-muted);font-size:.7rem;font-weight:400}
+.states i{font-style:normal;color:var(--accent)}
+.code{background:#16201F;color:#d7ece8;border-radius:var(--radius);padding:1.25rem 1.5rem;overflow-x:auto;font:.82rem/1.65 'JetBrains Mono',monospace;margin-top:1.75rem}
+
+.zoomset{display:inline-flex;align-items:center;gap:.4rem;font:.78rem 'JetBrains Mono',monospace;color:var(--text-muted)}
+.zoomset .btn{padding:.65rem .8rem;min-width:2.6rem;justify-content:center}
+.zoomset #sy-zv{min-width:3.4ch;text-align:center}
+.stage:fullscreen,.stage.fs{display:flex;flex-direction:column;border-radius:0;border:0;background:radial-gradient(70% 80% at 50% 38%,var(--accent-light),var(--surface) 78%)}
+.stage:-webkit-full-screen{display:flex;flex-direction:column;border-radius:0;border:0;background:radial-gradient(70% 80% at 50% 38%,var(--accent-light),var(--surface) 78%)}
+.stage.fs{position:fixed;inset:0;z-index:200}
+.stage:fullscreen canvas,.stage.fs canvas{height:auto;flex:1;min-height:0}
+.stage:-webkit-full-screen canvas{height:auto;flex:1;min-height:0}
+@media (max-width:640px){.steps{grid-template-columns:1fr}.stage-note{margin-left:0;width:100%}.readout{font-size:.68rem;padding:.45rem .6rem}.stage-msg{top:auto;bottom:4.6rem;left:.8rem;max-width:70%}}
+
+/* scroll reveal: fades in on the way down, fades out when you scroll back up past it */
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.js .item-card.reveal{transition:opacity .75s var(--ease),transform .75s var(--ease),padding .2s}
+.js .reveal.in{opacity:1;transform:none}
+
+@media (max-width:900px){
+  .hero-inner,.contact,.about-wrap,.two{grid-template-columns:1fr}
+  .hero-inner{gap:1rem}.hero-3d{height:320px}
+  .contact,.about-wrap{gap:1.5rem}
+  .item-card{grid-template-columns:1fr;gap:1rem}
+  .ledger-row{grid-template-columns:1fr;gap:.35rem}
+}
+@media (max-width:640px){
+  .menu a{padding:.3rem .4rem;font-size:.7rem}
+  .brand{display:none}
+  .topbar-inner{justify-content:center}
+  .feat{grid-template-columns:1fr}
+  .pn{grid-template-columns:1fr}.pn .next{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#projects">Skip to projects</a>
+<div id="progress" aria-hidden="true"></div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top-of-page">Disha Saini</a>
+    <nav class="menu" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#milestones">Milestones</a>
+      <a href="#tech">Tech</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<div id="home">
+<header class="hero" id="top-of-page"><div class="hero-inner">
+  <div class="hero-main">
+    <div class="status-pill"><span class="status-dot"></span>First-year CSE student &amp; builder</div>
+    <h1>Disha Saini</h1>
+    <p class="role" aria-live="off"><span id="typed">Full-stack developer</span><span class="cursor" aria-hidden="true"></span></p>
+    <p class="bio">I study computer science at RJIT Gwalior and have been coding since 14. I build full-stack apps, study tools and software that talks to hardware.</p>
+    <div class="actions">
+      <a class="btn primary" href="#projects">See my projects</a>
+      <button class="btn" id="copyMail" type="button" data-email="dishasaini2607@gmail.com">Copy email</button>
+    </div>
+    <div class="nav-links">
+      <a href="https://github.com/sdm2007" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/disha-saini-a565b1402/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:dishasaini2607@gmail.com">Email</a>
+    </div>
+  </div>
+  <div class="hero-3d" id="hero3d" aria-hidden="true"></div>
+</div></header>
+
+<div class="container">
+
+  <section id="about">
+    <h2>About me</h2>
+    <div class="about-wrap">
+      <div class="about">
+        <p>I am a first-year Computer Science Engineering student at RJIT Gwalior. I started coding at 14 with HTML, and since then I have worked with CSS, Python, MySQL, JavaScript and web development. I enjoy building practical projects and learning by making them.</p>
+        <p>I am most interested in where software meets hardware, creativity and problem solving.</p>
+      </div>
+      <div class="item-list plain">
+        <article class="item-card"><div class="item-content"><h3>3D printing and prototyping</h3><p>Operating 3D printers, preparing models for printing and producing finished prints, including generating 3D models with AI tools.</p></div></article>
+        <article class="item-card"><div class="item-content"><h3>Creative tools</h3><p>Video editing, 3D animation and creative AI tools.</p></div></article>
+        <article class="item-card"><div class="item-content"><h3>AI-assisted development</h3><p>Using AI-assisted development and prompt engineering to build and iterate on software, alongside game development experience.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Featured projects <span class="count" id="count">5</span></h2>
+    <div class="filters" role="group" aria-label="Filter projects">
+      <button class="chip" type="button" data-f="all" aria-pressed="true">All</button>
+      <button class="chip" type="button" data-f="web" aria-pressed="false">Web</button>
+      <button class="chip" type="button" data-f="backend" aria-pressed="false">Backend</button>
+      <button class="chip" type="button" data-f="iot" aria-pressed="false">IoT</button>
+      <button class="chip" type="button" data-f="wip" aria-pressed="false">In progress</button>
+    </div>
+
+    <div class="item-list" id="list">
+      <article class="item-card" data-cat="backend wip">
+        <div class="item-content">
+          <h3><a class="card-link" href="#project-icms">Integrated Company Management System</a> <span class="badge">in progress</span></h3>
+          <p>A Python and MySQL system that simulates how a company manages its people, money, projects and facilities.</p>
+        </div>
+        <div class="meta-tags"><span class="tag">Python</span><span class="tag">MySQL</span></div>
+        <a href="https://github.com/sdm2007/Integrated-Company-Management-System-ICMS-" class="item-action" target="_blank" rel="noopener noreferrer">Source &nearr;</a>
+      </article>
+
+      <article class="item-card" data-cat="web backend">
+        <div class="item-content">
+          <h3><a class="card-link" href="#project-jamghat">jamGhat</a> <span class="badge">live</span></h3>
+          <p>A hyperlocal marketplace for finding local shops, checking stock and prices, and getting the shortest route.</p>
+        </div>
+        <div class="meta-tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Supabase</span><span class="tag">Render</span></div>
+        <a href="https://jamghat.thesrock.in" class="item-action" target="_blank" rel="noopener noreferrer">Live app &nearr;</a>
+      </article>
+
+      <article class="item-card" data-cat="web">
+        <div class="item-content">
+          <h3><a class="card-link" href="#project-kozy">Kozy</a> <span class="badge">live</span></h3>
+          <p>A JEE study companion that tracks study time, tasks, syllabus progress, reports and exams.</p>
+        </div>
+        <div class="meta-tags"><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">Chart.js</span><span class="tag">Supabase</span></div>
+        <a href="https://sdm2007.github.io/kozy/" class="item-action" target="_blank" rel="noopener noreferrer">Live demo &nearr;</a>
+      </article>
+
+      <article class="item-card" data-cat="iot">
+        <div class="item-content">
+          <h3><a class="card-link" href="#project-shiyank">Shiyank</a></h3>
+          <p>An IoT water-testing device that reads sensors and shows the results on a display.</p>
+        </div>
+        <div class="meta-tags"><span class="tag">C++</span><span class="tag">ESP32</span><span class="tag">Microcontrollers</span></div>
+        <a href="https://wokwi.com/projects/479492563395301377" class="item-action" target="_blank" rel="noopener noreferrer">Simulation &nearr;</a>
+      </article>
+
+      <article class="item-card" data-cat="web backend wip">
+        <div class="item-content">
+          <h3><a class="card-link" href="#project-learnocrat">Learnocrat</a> <span class="badge">in progress</span></h3>
+          <p>A study-resource platform where students share notes and past papers, and AI sorts every upload.</p>
+        </div>
+        <div class="meta-tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MySQL</span><span class="tag">Claude API</span></div>
+        <a href="https://github.com/sdm2007/learnocrat" class="item-action" target="_blank" rel="noopener noreferrer">Source &nearr;</a>
+      </article>
+    </div>
+    <p class="empty" id="empty">No projects in this category yet.</p>
+  </section>
+
+  <section id="milestones">
+    <h2>Certifications &amp; milestones</h2>
+    <div class="ledger">
+      <div class="ledger-row"><span class="kind">Certification</span><h3>Cisco Networking Academy</h3><p>Completed foundational training in network protocols, routing and system security.</p></div>
+      <div class="ledger-row"><span class="kind">Tech fest</span><h3>NIT Durgapur: Aarohan Techmela</h3><p>Took part in technical competitions and engineering showcases at a national tech fest.</p></div>
+      <div class="ledger-row"><span class="kind">Hackathon</span><h3>SLAB Hackathon (WebCMD)</h3><p>Built Prior Art, an academic resource-sharing platform (now Learnocrat), under tight time limits.</p></div>
+    </div>
+  </section>
+
+  <section id="tech">
+    <h2>Tools &amp; tech</h2>
+    <div class="tech"><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">HTML5 &amp; CSS3</span><span class="tag">MySQL</span><span class="tag">PostgreSQL (Supabase)</span><span class="tag">Git &amp; GitHub</span><span class="tag">Render</span><span class="tag">GitHub Pages</span><span class="tag">ESP32 &amp; microcontrollers</span><span class="tag">3D printing</span><span class="tag">AI-assisted development</span></div>
+  </section>
+
+  <section id="contact">
+    <h2>Get in touch</h2>
+    <div class="contact">
+      <div class="contact-copy">
+        <p>Have an idea, an internship, or a project to build together? Send me an email and I will reply as soon as I can.</p>
+        <div class="actions">
+          <a class="btn primary" href="mailto:dishasaini2607@gmail.com">Send an email</a>
+          <button class="btn" id="copyMail2" type="button" data-email="dishasaini2607@gmail.com">Copy email</button>
+        </div>
+      </div>
+      <div class="contact-3d" id="contact3d" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Disha Saini</p>
+    <p>Designed and built by Disha Saini</p>
+  </footer>
+</div>
+</div>
+
+<div class="view" id="project-icms" hidden><main class="detail"><p class="crumb"><a href="#projects">Projects</a> / Integrated Company Management System</p>
+  <h1>Integrated Company Management System <span class="badge">in progress</span></h1>
+  <p class="lede">A Python and MySQL system that simulates how a company manages its people, money, projects and facilities.</p>
+  <div class="actions"><a class="btn primary" href="https://github.com/sdm2007/Integrated-Company-Management-System-ICMS-" target="_blank" rel="noopener noreferrer">View source</a><a class="btn" href="#projects">Back to projects</a></div>
+  <dl class="facts"><div class="fact"><dt>Category</dt><dd>Backend system</dd></div><div class="fact"><dt>Status</dt><dd>In progress</dd></div><div class="fact"><dt>Language</dt><dd>Python</dd></div><div class="fact"><dt>Database</dt><dd>MySQL</dd></div></dl>
+  <section><h2>Overview</h2><div class="two"><p class="body">I built this as my Class 12 Computer Science project. It explores how the different parts of a company work together, with each area planned as its own module.</p><p class="body">The module plan is documented in the repository and the code is still being completed, so this page describes the design rather than a finished product.</p></div></section>
+  <section><h2>Planned modules</h2><ul class="feat"><li>Employee management with profiles and performance appraisals</li><li>Time and attendance with clock-in/out and leave requests</li><li>Document management with version control and access permissions</li><li>Facility management with maintenance requests and vendor tracking</li><li>Risk management with incident tracking and reports</li><li>Sales management with lead tracking and commissions</li><li>Financial management with budgets, expenses and reports</li><li>Project management with task assignment and progress tracking</li><li>Role-based access for admin and department managers</li></ul></section>
+  <section><h2>Built with</h2><div class="tech"><span class="tag">Python</span><span class="tag">MySQL</span></div></section>
+  <nav class="pn" aria-label="More projects">
+    <a href="#project-learnocrat"><small>Previous</small><b>Learnocrat</b></a>
+    <a class="next" href="#project-jamghat"><small>Next</small><b>jamGhat</b></a>
+  </nav></main></div>
+
+<div class="view" id="project-jamghat" hidden><main class="detail"><p class="crumb"><a href="#projects">Projects</a> / jamGhat</p>
+  <h1>jamGhat <span class="badge">live</span></h1>
+  <p class="lede">A hyperlocal marketplace for finding local shops, checking stock and prices, and getting the shortest route.</p>
+  <div class="actions"><a class="btn primary" href="https://jamghat.thesrock.in" target="_blank" rel="noopener noreferrer">Open the live app</a><a class="btn" href="https://github.com/sdm2007/jamghat" target="_blank" rel="noopener noreferrer">View source</a><a class="btn" href="#projects">Back to projects</a></div>
+  <dl class="facts"><div class="fact"><dt>Category</dt><dd>Web app</dd></div><div class="fact"><dt>Status</dt><dd>Live</dd></div><div class="fact"><dt>Hosting</dt><dd>Render</dd></div><div class="fact"><dt>Database</dt><dd>Supabase Postgres</dd></div></dl>
+  <section><h2>Overview</h2><div class="two"><p class="body">Shoppers search for a product or service and see nearby shops with opening hours, stock status and listed prices, without needing an account. Shop owners register, verify their email and manage their own listing.</p><p class="body">The frontend is React with Tailwind and Vite, served by a Node.js and Express backend. Data lives in Supabase Postgres, shop photos in Supabase Storage, and the site runs on Render.</p></div></section>
+  <section><h2>Key features</h2><ul class="feat"><li>Search across shops, categories and individual items</li><li>Live GPS location, a map of nearby shops and the shortest route (Leaflet and OpenStreetMap)</li><li>Market price range that compares the same item across shops</li><li>Stock labels worked out from quantity: in stock, low and out of stock</li><li>Opening hours, with a one-day "closed today" override</li><li>Home service radar for repair and service providers</li><li>Owner dashboard for profile, inventory, hours and photos</li><li>Email verification, admin approval of new shops and admin review of photos</li><li>English and Hindi interface</li><li>Privacy policy, terms and cookie consent</li></ul></section>
+  <section><h2>Built with</h2><div class="tech"><span class="tag">React</span><span class="tag">Vite</span><span class="tag">Tailwind CSS</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">PostgreSQL</span><span class="tag">Supabase</span><span class="tag">Leaflet</span><span class="tag">Render</span></div></section>
+  <nav class="pn" aria-label="More projects">
+    <a href="#project-icms"><small>Previous</small><b>Integrated Company Management System</b></a>
+    <a class="next" href="#project-kozy"><small>Next</small><b>Kozy</b></a>
+  </nav></main></div>
+
+<div class="view" id="project-kozy" hidden><main class="detail"><p class="crumb"><a href="#projects">Projects</a> / Kozy</p>
+  <h1>Kozy <span class="badge">live</span></h1>
+  <p class="lede">A JEE study companion that tracks study time, tasks, syllabus progress, reports and exams.</p>
+  <div class="actions"><a class="btn primary" href="https://sdm2007.github.io/kozy/" target="_blank" rel="noopener noreferrer">Open the live demo</a><a class="btn" href="https://github.com/sdm2007/kozy" target="_blank" rel="noopener noreferrer">View source</a><a class="btn" href="#projects">Back to projects</a></div>
+  <dl class="facts"><div class="fact"><dt>Category</dt><dd>Web app</dd></div><div class="fact"><dt>Status</dt><dd>Live</dd></div><div class="fact"><dt>Hosting</dt><dd>GitHub Pages</dd></div><div class="fact"><dt>Data</dt><dd>Supabase</dd></div></dl>
+  <section><h2>Overview</h2><div class="two"><p class="body">I started Kozy during my JEE preparation. I wanted one place to see not only how long I studied, but what I studied, how much of the syllabus I had finished and how close my exams were.</p><p class="body">It is a single-page app in HTML, CSS and JavaScript, with Chart.js for the reports. Supabase handles sign-in and syncs your data across devices, and it is hosted on GitHub Pages.</p></div></section>
+  <section><h2>Key features</h2><ul class="feat"><li>Dashboard with total and daily study time, favourite subject, daily goal and streaks</li><li>Study timer that logs each session against a subject</li><li>To-do list for study tasks</li><li>Weekly, monthly and yearly reports with charts</li><li>Syllabus tracker with theory, practice and revision for every chapter</li><li>Exam tracker with a days-left countdown</li><li>Light and dark themes</li><li>Account sign-in with cloud sync</li></ul></section>
+  <section><h2>What I learned</h2><div class="two"><p class="body">The biggest lesson was that building something is only half the job. Debugging it is the other half.</p></div></section>
+  <section><h2>Built with</h2><div class="tech"><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">Chart.js</span><span class="tag">Supabase</span><span class="tag">GitHub Pages</span></div></section>
+  <nav class="pn" aria-label="More projects">
+    <a href="#project-jamghat"><small>Previous</small><b>jamGhat</b></a>
+    <a class="next" href="#project-shiyank"><small>Next</small><b>Shiyank</b></a>
+  </nav></main></div>
+
+<div class="view" id="project-shiyank" hidden><main class="detail"><p class="crumb"><a href="#projects">Projects</a> / Shiyank</p>
+  <h1>Shiyank</h1>
+  <p class="lede">An IoT water-testing device that reads sensors and shows the results on a display.</p>
+  <div class="actions"><a class="btn primary" href="https://wokwi.com/projects/479492563395301377" target="_blank" rel="noopener noreferrer">Open the Wokwi simulation</a><a class="btn" href="#projects">Back to projects</a></div>
+  <dl class="facts"><div class="fact"><dt>Category</dt><dd>IoT prototype</dd></div><div class="fact"><dt>Controller</dt><dd>ESP32</dd></div><div class="fact"><dt>Sensors</dt><dd>pH, TDS, turbidity, temperature</dd></div><div class="fact"><dt>Display</dt><dd>I&sup2;C OLED</dd></div></dl>
+
+  <section><h2>See how it works</h2>
+    <div class="stage" id="sy3d">
+      <canvas id="sy-canvas" tabindex="0" role="img" aria-label="Interactive 3D model of the Shiyank water quality tester. Drag or use the arrow keys to rotate it."></canvas>
+      <div class="labels" id="sy-labels" aria-hidden="true"></div>
+      <p class="stage-msg" id="sy-msg" aria-live="polite">Drag to turn the model.</p>
+      <div class="readout" id="sy-read" hidden><span>Status</span><b id="sy-st">NO SAMPLE</b><span>pH</span><b id="sy-ph">--</b><span>TDS</span><b id="sy-tds">--</b><span>Turbidity</span><b id="sy-nt">--</b><span>Temp</span><b id="sy-t">--</b><small>sample values, in volts like the real firmware</small></div>
+      <div class="stage-bar">
+        <button class="btn" id="sy-asm" type="button" aria-pressed="false">Assemble</button>
+        <button class="btn" id="sy-dis" type="button" aria-pressed="true">Disassemble</button>
+        <button class="btn" id="sy-flow" type="button" aria-pressed="false">Water flow</button>
+        <button class="btn" id="sy-spin" type="button">Pause rotation</button>
+        <button class="btn" id="sy-lbl" type="button" aria-pressed="true">Labels</button>
+        <span class="zoomset" role="group" aria-label="Zoom"><button class="btn" id="sy-zout" type="button" aria-label="Zoom out" title="Zoom out">&minus;</button><span id="sy-zv">100%</span><button class="btn" id="sy-zin" type="button" aria-label="Zoom in" title="Zoom in">+</button></span>
+        <button class="btn" id="sy-reset" type="button">Reset view</button>
+        <button class="btn" id="sy-fs" type="button">Full screen</button>
+        <span class="stage-note">Drag to rotate, pinch or Ctrl + scroll to zoom. Readings are sample values.</span>
+      </div>
+    </div>
+  </section>
+
+  <section><h2>Overview</h2><div class="two"><p class="body">Shiyank is a student prototype of a water quality tester. Water runs through a pipe past four probes: pH, TDS, turbidity and temperature. An ESP32 reads them and shows the results on a display on the front of the box.</p><p class="body">It is an educational screening prototype, not a certified drinking-water safety device. Hardness is tested separately with a drop-test kit, because a TDS sensor cannot give calcium or magnesium hardness.</p></div></section>
+
+  <section><h2>How the box is arranged</h2><ul class="feat"><li><b>Wet side (back).</b> The pipe runs from the inlet on one side to the outlet on the other. All four probes sit inside it through sealed fittings.</li><li><b>Partition plate.</b> Separates the pipe from the circuit. The sensor boards are mounted on its dry face, so only the probes touch water.</li><li><b>Dry side (front).</b> The ESP32 reads the sensor boards and drives the front display. A USB port on the side supplies 5 V.</li></ul></section>
+
+  <section><h2>Wiring map</h2>
+    <div class="table-wrap"><table class="pins"><thead><tr><th>Module</th><th>Signal</th><th>ESP32 pin</th><th>Wire colour</th></tr></thead><tbody>
+      <tr><td>pH module</td><td>OUT</td><td>GPIO 34 (ADC)</td><td><span class="sw" style="--c:#7C6CF0">Purple</span></td></tr>
+      <tr><td>TDS module</td><td>OUT</td><td>GPIO 35 (ADC)</td><td><span class="sw" style="--c:#2FA672">Green</span></td></tr>
+      <tr><td>Turbidity module</td><td>OUT</td><td>GPIO 32 (ADC)</td><td><span class="sw" style="--c:#D9861A">Amber</span></td></tr>
+      <tr><td>DS18B20</td><td>DATA</td><td>GPIO 4 (4.7 k&Omega; pull-up to 3V3)</td><td><span class="sw" style="--c:#E0572F">Orange-red</span></td></tr>
+      <tr><td>OLED display</td><td>SDA</td><td>GPIO 21</td><td><span class="sw" style="--c:#2FA672">Green</span></td></tr>
+      <tr><td>OLED display</td><td>SCL</td><td>GPIO 22</td><td><span class="sw" style="--c:#E8B923">Yellow</span></td></tr>
+    </tbody></table></div>
+    <p class="table-note">Each module gets 3.3 V or 5 V as its datasheet says, and all grounds are joined. Pin numbers are illustrative, so check the datasheets for the exact modules you buy.</p>
+  </section>
+
+  <section><h2>Build steps</h2><ol class="steps"><li><b>Test the ESP32</b>Upload a Blink or Serial Monitor sketch before adding any sensor.</li><li><b>Add the temperature sensor</b>DS18B20 to 3V3, GND and GPIO 4, with the 4.7 k&Omega; resistor from DATA to 3V3.</li><li><b>Add pH, TDS and turbidity</b>One module at a time. Measure each OUT pin with a multimeter first (3.3 V maximum) and read raw ADC values before converting them.</li><li><b>Add the display</b>SDA to GPIO 21 and SCL to GPIO 22. If the screen stays blank, scan for the I&sup2;C address.</li><li><b>Calibrate</b>Use fresh pH 4 and pH 7 buffers and the TDS reference solution. Rinse the probes with distilled water between samples and note the date of each calibration.</li></ol></section>
+
+  <section><h2>The firmware</h2>
+    <div class="two"><p class="body">The ESP32 runs an Arduino sketch built around a three-state sample cycle. The whole circuit also runs in the Wokwi simulator, where potentiometers stand in for the pH, TDS and turbidity modules.</p><p class="body">For now it reports raw sensor voltages. Calibration is what turns them into pH, TDS and turbidity values.</p></div>
+    <div class="states" aria-label="Sample states"><span>NO SAMPLE</span><i>&rarr;</i><span>SETTLING<small>waits 5 s</small></span><i>&rarr;</i><span>MEASURING<small>reads every 2 s</small></span></div>
+    <ul class="feat"><li>A sample switch on GPIO 27 tells the ESP32 when water is present. In the simulation it is a push-button: pressing it starts a sample and releasing it clears the old readings.</li><li>Presses are debounced for 50 ms, so one press is read once.</li><li>Each analogue sensor is averaged over 20 ADC readings and converted to a voltage between 0 and 3.3 V.</li><li>The DS18B20 temperature is read on GPIO 4. If the sensor is missing, the display and Serial Monitor show an error instead of a number.</li><li>Results go to a 128&times;64 SSD1306 OLED (I&sup2;C, address 0x3C) and to the Serial Monitor at 115200 baud.</li></ul>
+<pre class="code"><code>const unsigned long SETTLING_TIME = 5000;     // ms
+const unsigned long READING_INTERVAL = 2000;  // ms
+
+enum SampleState { NO_SAMPLE, SETTLING, MEASURING };
+
+// switch pressed = sample present
+if (stableButtonState == LOW &amp;&amp; sampleState == NO_SAMPLE) {
+  sampleState = SETTLING;
+  sampleStartTime = millis();
+}
+// switch released = sample removed
+else if (stableButtonState == HIGH &amp;&amp; sampleState != NO_SAMPLE) {
+  sampleState = NO_SAMPLE;
+}
+
+// settled long enough, start measuring
+if (sampleState == SETTLING &amp;&amp; millis() - sampleStartTime &gt;= SETTLING_TIME) {
+  sampleState = MEASURING;
+}</code></pre>
+    <p class="table-note">Libraries: OneWire, DallasTemperature and Adafruit SSD1306 (with Adafruit GFX).</p>
+    <div class="actions" style="margin-top:1rem"><a class="btn primary" href="https://wokwi.com/projects/479492563395301377" target="_blank" rel="noopener noreferrer">Open the Wokwi simulation &nearr;</a></div>
+  </section>
+
+  <section><h2>Safety notes</h2><ul class="feat"><li>Never feed more than 3.3 V into an ESP32 input pin. Use the interface boards for every probe instead of wiring a probe straight to a GPIO.</li><li>Keep the ESP32, display and wiring dry. Use waterproof fittings where the probes enter the pipe and keep the plate sealed.</li></ul></section>
+
+  <section><h2>Built with</h2><div class="tech"><span class="tag">C++ (Arduino)</span><span class="tag">ESP32</span><span class="tag">Microcontrollers</span><span class="tag">DS18B20</span><span class="tag">SSD1306 OLED</span><span class="tag">Wokwi</span></div></section>
+  <nav class="pn" aria-label="More projects">
+    <a href="#project-kozy"><small>Previous</small><b>Kozy</b></a>
+    <a class="next" href="#project-learnocrat"><small>Next</small><b>Learnocrat</b></a>
+  </nav></main></div>
+
+<div class="view" id="project-learnocrat" hidden><main class="detail"><p class="crumb"><a href="#projects">Projects</a> / Learnocrat</p>
+  <h1>Learnocrat <span class="badge">in progress</span></h1>
+  <p class="lede">A study-resource platform where students share notes and past papers, and AI sorts every upload.</p>
+  <div class="actions"><a class="btn primary" href="https://github.com/sdm2007/learnocrat" target="_blank" rel="noopener noreferrer">View source</a><a class="btn" href="#projects">Back to projects</a></div>
+  <dl class="facts"><div class="fact"><dt>Category</dt><dd>Full-stack web app</dd></div><div class="fact"><dt>Status</dt><dd>In progress</dd></div><div class="fact"><dt>Origin</dt><dd>SLAB WebCMD Hackathon</dd></div><div class="fact"><dt>Database</dt><dd>MySQL</dd></div></dl>
+  <section><h2>Overview</h2><div class="two"><p class="body">Notes and previous-year papers end up scattered across chat groups and drives. Learnocrat puts them in one place, organised by course, semester and subject. I built it under the name Prior Art for the SLAB WebCMD Hackathon, and it is still in development.</p><p class="body">Uploads are processed in the background. Text is pulled out of PDFs, Word files, text files and images (with OCR for scans), then Claude suggests the subject, type, exam and year. The uploader reviews it before anything is published.</p></div></section>
+  <section><h2>Key features</h2><ul class="feat"><li>Upload PDF, DOCX, TXT and image files up to 20 MB</li><li>Text extraction, with OCR for scanned pages</li><li>AI classification into subject, content type, exam type, year and professor</li><li>A review step, so nothing is published until the uploader confirms</li><li>Duplicate checks using file hashes and similar-resource suggestions</li><li>Search by filters, keywords or a plain-language AI question</li><li>Karma system: earn karma for uploads, spend it on downloads after three free ones</li><li>Voting, comments, reporting and admin moderation</li><li>Background job queue with retries</li></ul></section>
+  <section><h2>Built with</h2><div class="tech"><span class="tag">React</span><span class="tag">Vite</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MySQL</span><span class="tag">Tesseract.js</span><span class="tag">Claude API</span><span class="tag">JWT</span></div></section>
+  <nav class="pn" aria-label="More projects">
+    <a href="#project-shiyank"><small>Previous</small><b>Shiyank</b></a>
+    <a class="next" href="#project-icms"><small>Next</small><b>Integrated Company Management System</b></a>
+  </nav></main></div>
+
+<button id="top" type="button" aria-label="Back to top">&uarr;</button>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+document.documentElement.classList.add('js');
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* scroll progress + back-to-top */
+const bar=$('#progress'), topBtn=$('#top');
+function onScroll(){
+  const h=document.documentElement.scrollHeight-innerHeight;
+  bar.style.width=(h>0?scrollY/h*100:0)+'%';
+  topBtn.classList.toggle('show',scrollY>600);
+}
+addEventListener('scroll',onScroll,{passive:true}); onScroll();
+topBtn.onclick=()=>scrollTo({top:0,behavior:reduce?'auto':'smooth'});
+
+/* reversible scroll reveal
+   - scrolling down: an element fades up into place as it enters
+   - scrolling up: an element fades back out when it leaves through the bottom edge
+   - elements that scrolled off the top stay visible, so nothing flickers behind you */
+const revealSel=[
+  '.hero-main > *','.hero-3d',
+  'section > h2','.about p','.about-wrap .item-card','.filters','#list .item-card',
+  '.ledger-row','.tech','.contact-copy','.contact-3d','footer',
+  '.detail > *:not(section)','.detail section > *'
+].join(',');
+const targets=[...new Set($$(revealSel))];
+const seen=new Map();
+targets.forEach(el=>{
+  el.classList.add('reveal');
+  const n=seen.get(el.parentElement)||0; seen.set(el.parentElement,n+1);
+  el.dataset.d=Math.min(n,6)*90;
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  const el=e.target;
+  if(e.isIntersecting){
+    if(!reduce)el.style.transitionDelay=el.dataset.d+'ms';
+    el.classList.add('in');
+    clearTimeout(el._t);el._t=setTimeout(()=>{el.style.transitionDelay=''},1000);
+  }else if(e.boundingClientRect.top>innerHeight/2){
+    el.style.transitionDelay='';
+    el.classList.remove('in');
+  }
+}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+targets.forEach(el=>io.observe(el));
+
+/* active nav link */
+const links=$$('.menu a');
+const spy=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}
+}),{rootMargin:'-45% 0px -50% 0px'});
+$$('#home section[id]').forEach(s=>spy.observe(s));
+
+/* rotating role line */
+const roles=['Full-stack developer','IoT developer','3D printing and prototyping','CSE student'];
+const typed=$('#typed');
+if(!reduce){
+  let r=0,c=roles[0].length,del=true;
+  const step=()=>{
+    const w=roles[r];
+    if(!del){
+      c++;typed.textContent=w.slice(0,c);
+      if(c>=w.length){del=true;return setTimeout(step,1800)}
+      return setTimeout(step,70);
+    }
+    c--;typed.textContent=w.slice(0,c)||'\u00A0';
+    if(c<=0){del=false;r=(r+1)%roles.length}
+    setTimeout(step,35);
+  };
+  setTimeout(step,1800);
+}
+
+/* project filters */
+const chips=$$('.chip'), cards=$$('#list .item-card'), count=$('#count'), empty=$('#empty');
+chips.forEach(ch=>ch.addEventListener('click',()=>{
+  chips.forEach(c=>c.setAttribute('aria-pressed',String(c===ch)));
+  const f=ch.dataset.f; let n=0;
+  cards.forEach(card=>{
+    const show=f==='all'||card.dataset.cat.split(' ').includes(f);
+    card.hidden=!show;
+    if(show){n++;card.classList.remove('pop');void card.offsetWidth;card.classList.add('pop')}
+  });
+  count.textContent=n; empty.style.display=n?'none':'block';
+}));
+
+/* copy email with feedback */
+const toast=$('#toast'); let tt;
+function say(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),2000)}
+$$('[data-email]').forEach(b=>b.addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(b.dataset.email);say('Email copied')}
+  catch{say('Copy failed. Email: '+b.dataset.email)}
+}));
+
+/* single-file router: #project-<name> shows a project page, anything else shows home */
+let shiyankReady=false;
+const views=$$('.view'),home=$('#home'),baseTitle=document.title;
+function route(){
+  const id=location.hash.slice(1),v=views.find(x=>x.id===id);
+  if(v)$$('.reveal',v).forEach(el=>el.classList.remove('in')); /* replay the entrance on every visit */
+  home.hidden=!!v;views.forEach(x=>x.hidden=x!==v);
+  if(v&&v.id==='project-shiyank')initShiyank();
+  if(v){document.title=$('h1',v).firstChild.textContent.trim()+' | Disha Saini';scrollTo(0,0)}
+  else{document.title=baseTitle;const t=id&&document.getElementById(id);if(t)t.scrollIntoView()}
+  onScroll();
+}
+addEventListener('hashchange',route);route();
+
+/* 3D scenes (three.js): they look at your pointer, lean toward it, speed up when it is close and burst when clicked */
+function scene3d(host,build){
+  if(!window.THREE||!host)return;
+  const T=THREE;let renderer;
+  try{renderer=new T.WebGLRenderer({antialias:true,alpha:true})}catch(e){return}
+  const camera=new T.PerspectiveCamera(45,1,.1,100);camera.position.z=6.2;
+  const sc=new T.Scene();sc.add(new T.AmbientLight(0xffffff,.7));
+  const d=new T.DirectionalLight(0xffffff,.9);d.position.set(3,4,5);sc.add(d);
+  const g=new T.Group();sc.add(g);const tick=build(g,T);
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));host.appendChild(renderer.domElement);
+  const s={x:0,y:0,near:0,pulse:0};
+  let tx=0,ty=0,near=0,pulse=0,time=0,visible=true;
+  const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+  const clock=new T.Clock();
+  const draw=()=>{tick(time,s);renderer.render(sc,camera)};
+  function size(){const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();if(reduce)draw()}
+  new ResizeObserver(size).observe(host);size();
+  if(reduce){draw();return}
+  addEventListener('pointermove',e=>{
+    const r=host.getBoundingClientRect();
+    const dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2);
+    tx=clamp(dx/(innerWidth*.4),-1,1);ty=clamp(dy/(innerHeight*.4),-1,1);
+    near=clamp(1-Math.hypot(dx,dy)/(Math.max(r.width,r.height)*.9),0,1);
+  },{passive:true});
+  host.addEventListener('pointerdown',()=>{pulse=1});
+  new IntersectionObserver(es=>{visible=es[0].isIntersecting}).observe(host);
+  (function frame(){
+    requestAnimationFrame(frame);
+    if(!visible||document.hidden)return;
+    const dt=Math.min(clock.getDelta(),.05);
+    s.x+=(tx-s.x)*.08;s.y+=(ty-s.y)*.08;s.near+=(near-s.near)*.08;
+    pulse*=.94;s.pulse=pulse;
+    time+=dt*(1+s.near*1.5+pulse*4);
+    g.rotation.y=s.x*1.1;g.rotation.x=s.y*.8;
+    g.position.x=s.x*.35;g.position.y=-s.y*.25;
+    g.scale.setScalar(1+s.near*.1+pulse*.15);
+    draw();
+  })();
+}
+scene3d($('#hero3d'),(g,T)=>{
+  const knot=new T.Mesh(new T.TorusKnotGeometry(1.1,.36,140,18),new T.MeshStandardMaterial({color:0x0D9488,roughness:.35,metalness:.15,flatShading:true}));
+  const cage=new T.Mesh(new T.IcosahedronGeometry(2.1,1),new T.MeshBasicMaterial({color:0x0D9488,wireframe:true,transparent:true,opacity:.22}));
+  const sat=[0,1,2].map(i=>new T.Mesh(i===1?new T.OctahedronGeometry(.3):new T.IcosahedronGeometry(.25,0),new T.MeshStandardMaterial({color:0x1C1C1A,roughness:.4,flatShading:true})));
+  g.add(knot,cage,...sat);
+  return (t,s)=>{knot.rotation.x=t*.25;knot.rotation.y=t*.35;cage.rotation.y=-t*.1;cage.rotation.x=t*.05;
+    cage.material.opacity=.22+s.near*.25;
+    sat.forEach((m,i)=>{const a=t*(.5+i*.2)+i*2.1;m.position.set(Math.cos(a)*2.6,Math.sin(a*1.3)*1.2,Math.sin(a)*2.6);m.rotation.x=t;m.rotation.y=t*.7})};
+});
+scene3d($('#contact3d'),(g,T)=>{
+  const ico=new T.Mesh(new T.IcosahedronGeometry(1.3,0),new T.MeshStandardMaterial({color:0x0D9488,roughness:.4,flatShading:true}));
+  const wire=new T.Mesh(new T.DodecahedronGeometry(1.9,0),new T.MeshBasicMaterial({color:0x0D9488,wireframe:true,transparent:true,opacity:.3}));
+  const r1=new T.Mesh(new T.TorusGeometry(2.3,.03,8,90),new T.MeshBasicMaterial({color:0x1C1C1A}));
+  const r2=new T.Mesh(new T.TorusGeometry(2.3,.03,8,90),new T.MeshBasicMaterial({color:0x1C1C1A}));r2.rotation.x=Math.PI/2;
+  g.add(ico,wire,r1,r2);
+  return (t,s)=>{ico.rotation.y=t*.5;ico.rotation.x=t*.3;wire.rotation.y=-t*.25;wire.material.opacity=.3+s.near*.3;r1.rotation.z=t*.3;r2.rotation.y=t*.4};
+});
+
+/* Shiyank: interactive 3D model. Assemble / disassemble, then run the water flow. */
+function initShiyank(){
+  if(shiyankReady||!window.THREE)return;
+  const stage=$('#sy3d'),canvas=$('#sy-canvas'),msg=$('#sy-msg');
+  if(!stage||!canvas)return;
+  shiyankReady=true;
+  const T=THREE;let renderer;
+  try{renderer=new T.WebGLRenderer({canvas,antialias:true,alpha:true})}
+  catch(e){msg.textContent='The 3D view needs WebGL, which is switched off in this browser.';return}
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  const scene=new T.Scene(),camera=new T.PerspectiveCamera(38,1,.1,100);
+  scene.add(new T.AmbientLight(0xffffff,.78));
+  const k=new T.DirectionalLight(0xffffff,.8);k.position.set(4,8,9);scene.add(k);
+  const f=new T.DirectionalLight(0xbfd9ff,.35);f.position.set(-6,3,-4);scene.add(f);
+  const root=new T.Group();scene.add(root);
+
+  const V=(x,y,z)=>new T.Vector3(x,y,z);
+  const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+  const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+  const std=(c,o)=>new T.MeshStandardMaterial(Object.assign({color:c,roughness:.55,metalness:.1},o||{}));
+  const box=(w,h,d,m)=>new T.Mesh(new T.BoxGeometry(w,h,d),m);
+  const edges=(m,c,o)=>{const l=new T.LineSegments(new T.EdgesGeometry(m.geometry),new T.LineBasicMaterial({color:c,transparent:true,opacity:o}));m.add(l);return l};
+  const parts=[];
+  const part=(home,off,d)=>{const g=new T.Group();g.position.copy(home);root.add(g);const p={g,home,off,d,fade:[]};parts.push(p);return p};
+
+  /* display texture */
+  const dc=document.createElement('canvas');dc.width=512;dc.height=278;
+  const dx=dc.getContext('2d'),dTex=new T.CanvasTexture(dc);
+  function drawDisp(st,v){
+    dx.fillStyle='#03121a';dx.fillRect(0,0,512,278);
+    dx.fillStyle='#9be7ff';dx.font='26px monospace';
+    const rows=['SHIYANK WATER MONITOR','---------------------','Status: '+st];
+    if(v)rows.push('pH voltage: '+v.ph.toFixed(2)+' V','TDS voltage: '+v.tds.toFixed(2)+' V','Turbidity: '+v.nt.toFixed(2)+' V','Temperature: '+v.t.toFixed(1)+' C');
+    else rows.push('','Waiting for sample...');
+    rows.forEach((r,i)=>dx.fillText(r,20,38+i*36));
+    dTex.needsUpdate=true;
+  }
+  const vals=t=>({ph:1.65+.05*Math.sin(t*.7),tds:.85+.04*Math.sin(t*.9+1),nt:2.1+.06*Math.sin(t*.6+2),t:26.5+.3*Math.sin(t*.5)});
+  drawDisp('NO SAMPLE',null);
+
+  /* base and glass shell */
+  const base=part(V(0,-1.65,0),V(0,0,0),0);
+  base.g.add(box(8.4,.15,3.8,std(0xD9D6C8,{roughness:.8})));
+  const shell=part(V(0,.02,0),V(0,2.8,0),.04);
+  const sm=new T.Mesh(new T.BoxGeometry(8,3.2,3.6),new T.MeshBasicMaterial({color:0x9bb7c8,transparent:true,opacity:.07,side:T.DoubleSide,depthWrite:false}));
+  shell.g.add(sm);const sl=edges(sm,0x6b7280,.75);
+  shell.fade.push([sm.material,.07],[sl.material,.75]);
+
+  /* wet side: pipe with moving water */
+  const pipe=part(V(0,.35,-1),V(0,1,-2.4),.12);
+  const outer=new T.Mesh(new T.CylinderGeometry(.6,.6,9,40,1,true),std(0x4F8FBF,{transparent:true,opacity:.32,side:T.DoubleSide,depthWrite:false}));
+  outer.rotation.z=Math.PI/2;pipe.g.add(outer);
+  const wc=document.createElement('canvas');wc.width=8;wc.height=128;
+  const wx=wc.getContext('2d'),gr=wx.createLinearGradient(0,0,0,128);
+  gr.addColorStop(0,'#7fb8e6');gr.addColorStop(.5,'#2f78b3');gr.addColorStop(1,'#7fb8e6');
+  wx.fillStyle=gr;wx.fillRect(0,0,8,128);
+  const wt=new T.CanvasTexture(wc);wt.wrapS=wt.wrapT=T.RepeatWrapping;wt.repeat.set(1,6);
+  const water=new T.Mesh(new T.CylinderGeometry(.5,.5,9,32,1,true),new T.MeshBasicMaterial({map:wt,transparent:true,opacity:.55,side:T.DoubleSide,depthWrite:false}));
+  water.rotation.z=Math.PI/2;pipe.g.add(water);
+  [-4.35,4.35].forEach(x=>{const r=new T.Mesh(new T.TorusGeometry(.62,.07,12,40),std(0x2B5F86));r.rotation.y=Math.PI/2;r.position.x=x;pipe.g.add(r)});
+  const N=150,pp=new Float32Array(N*3),pv=[];
+  for(let i=0;i<N;i++){const a=Math.random()*6.283,r=Math.sqrt(Math.random())*.42;pp[i*3]=Math.random()*9-4.5;pp[i*3+1]=Math.cos(a)*r;pp[i*3+2]=Math.sin(a)*r;pv.push(.9+Math.random()*1.1)}
+  const pg=new T.BufferGeometry();pg.setAttribute('position',new T.BufferAttribute(pp,3));
+  const dots=new T.Points(pg,new T.PointsMaterial({color:0xE6F4FF,size:.09,transparent:true,opacity:.95,depthWrite:false}));
+  dots.visible=false;dots.frustumCulled=false;pipe.g.add(dots);
+
+  /* partition plate */
+  const plate=part(V(0,0,-.35),V(0,.7,-1),.22);
+  const pm=box(7.2,2.9,.1,std(0x8FB0C6,{transparent:true,opacity:.5,depthWrite:false}));
+  plate.g.add(pm);edges(pm,0x5b7a90,.8);
+
+  /* four sensor boards with probes */
+  const SX=[-2.4,-.8,.8,2.4],COL=[0x7C6CF0,0x2FA672,0xD9861A,0xE0572F],NAME=['pH GPIO34','TDS GPIO35','Turb. GPIO32','DS18B20 GPIO4'];
+  const boards=SX.map((x,i)=>{
+    const p=part(V(x,.35,-.26),V(x*.12,1.5,1.5),.34+i*.03);
+    const bm=std(COL[i],{emissive:COL[i],emissiveIntensity:0});
+    p.g.add(box(1,.75,.08,bm));
+    const chip=box(.3,.3,.06,std(0x20242b));chip.position.set(.15,.05,.06);p.g.add(chip);
+    const pr=new T.Mesh(new T.CylinderGeometry(.06,.06,.8,14),std(0xB8BEC6,{metalness:.5,roughness:.35}));
+    pr.rotation.x=Math.PI/2;pr.position.z=-.44;p.g.add(pr);
+    const cap=new T.Mesh(new T.CylinderGeometry(.075,.075,.16,14),std(COL[i]));
+    cap.rotation.x=Math.PI/2;cap.position.z=-.78;p.g.add(cap);
+    if(i===0){const bulb=new T.Mesh(new T.SphereGeometry(.12,14,12),std(0xBFE3F5,{transparent:true,opacity:.85}));bulb.position.z=-.92;p.g.add(bulb)}
+    p.mat=bm;return p;
+  });
+
+  /* dry side: ESP32, display, USB port */
+  const esp=part(V(0,-1.5,.6),V(0,.5,1.5),.5);
+  esp.g.add(box(2.6,.14,1.1,std(0x24262B,{roughness:.7})));
+  const eb=box(1.6,.07,.8,std(0x1f4f5a));eb.position.y=.11;esp.g.add(eb);
+  const sh=box(.6,.06,.46,std(0xC9CED4,{metalness:.6,roughness:.35}));sh.position.set(-.35,.175,0);esp.g.add(sh);
+  const uc=box(.2,.1,.24,std(0xC9CED4,{metalness:.6,roughness:.35}));uc.position.set(.88,.15,0);esp.g.add(uc);
+  [-.34,.34].forEach(z=>{const h=box(1.4,.07,.06,std(0x111317));h.position.set(0,.17,z);esp.g.add(h)});
+
+  const disp=part(V(0,-.55,1.05),V(0,1.2,2.3),.62);
+  disp.g.add(box(2.1,1.25,.12,std(0x1A1C20,{roughness:.4})));
+  const scr=new T.Mesh(new T.PlaneGeometry(1.84,1),new T.MeshBasicMaterial({map:dTex}));scr.position.z=.065;disp.g.add(scr);
+  const stand=box(.5,.35,.25,std(0x1A1C20));stand.position.set(0,-.78,-.05);disp.g.add(stand);
+
+  const usb=part(V(3.75,-1.28,.85),V(1.3,.9,1.1),.7);
+  usb.g.add(box(.5,.4,.45,std(0xB8BEC6,{metalness:.5,roughness:.4})));
+
+  /* wires (fixed curves, they fade in once everything is in place) */
+  const wireGrp=new T.Group();root.add(wireGrp);
+  const wires=[];
+  function wire(pts,c,r){
+    const curve=new T.CatmullRomCurve3(pts.map(q=>V(q[0],q[1],q[2])));
+    const m=new T.MeshStandardMaterial({color:c,roughness:.5,transparent:true,opacity:0});
+    wireGrp.add(new T.Mesh(new T.TubeGeometry(curve,32,r||.028,8,false),m));
+    wires.push({curve,m,c});
+  }
+  const EX=[-.55,-.2,.2,.55];
+  SX.forEach((x,i)=>wire([[x,-.03,-.2],[x*.9,-.5,-.05],[EX[i]+(x-EX[i])*.25,-1.1,.15],[EX[i],-1.33,.3]],COL[i]));
+  wire([[.15,-1.33,.92],[.2,-1.28,1],[.14,-1.15,.98]],0x2FA672);
+  wire([[-.15,-1.33,.92],[-.2,-1.28,1],[-.14,-1.15,.98]],0xE8B923);
+  const pulses=wires.map(w=>{const m=new T.Mesh(new T.SphereGeometry(.07,10,10),new T.MeshBasicMaterial({color:new T.Color(w.c).lerp(new T.Color(0xffffff),.4)}));m.visible=false;root.add(m);return m});
+  wire([[1,-1.35,.6],[2,-1.45,.72],[3,-1.4,.85],[3.5,-1.28,.85]],0x3a3d42,.036);
+
+  /* labels that follow their parts */
+  const lab=[['Water inlet',pipe,[-4.5,.95,0]],['Water outlet',pipe,[4.5,.95,0]],['Partition plate',plate,[-2.9,1.7,0]]]
+    .concat(NAME.map((n,i)=>[n,boards[i],[0,.62,0]]))
+    .concat([['Display (front)',disp,[0,.78,.1]],['ESP32',esp,[-.2,.55,.2]],['USB 5 V',usb,[0,.45,0]]])
+    .map(a=>{const el=document.createElement('span');el.className='lbl';el.textContent=a[0];$('#sy-labels').appendChild(el);return{el,p:a[1],o:V(a[2][0],a[2][1],a[2][2])}});
+
+  /* controls */
+  let target=0,flowWanted=false,spin=!reduce,zoom=1,zoomT=1,yaw=-.45,pitch=.38,vy=0,drag=false,lx=0,ly=0;
+  const bAs=$('#sy-asm'),bDis=$('#sy-dis'),bFl=$('#sy-flow'),bLb=$('#sy-lbl'),bRs=$('#sy-reset'),bSp=$('#sy-spin'),bZi=$('#sy-zin'),bZo=$('#sy-zout'),bFs=$('#sy-fs'),zv=$('#sy-zv');
+  function ui(){
+    bAs.setAttribute('aria-pressed',String(target===1));
+    bDis.setAttribute('aria-pressed',String(target===0));
+    bFl.setAttribute('aria-pressed',String(flowWanted));
+    bFl.textContent=flowWanted?'Stop water flow':'Water flow';
+    bSp.textContent=spin?'Pause rotation':'Start rotation';
+  }
+  bAs.onclick=()=>{target=1;ui()};
+  bDis.onclick=()=>{target=0;flowWanted=false;ui()};
+  bFl.onclick=()=>{flowWanted=!flowWanted;if(flowWanted)target=1;ui()};
+  bLb.onclick=()=>{const off=stage.classList.toggle('nolabels');bLb.setAttribute('aria-pressed',String(!off))};
+  bRs.onclick=()=>{yaw=-.45;pitch=.38;vy=0;zoomT=1};
+  bSp.onclick=()=>{spin=!spin;ui()};
+  const setZoom=z=>{zoomT=clamp(z,.6,2)};
+  bZi.onclick=()=>setZoom(zoomT*1.25);
+  bZo.onclick=()=>setZoom(zoomT/1.25);
+
+  /* drag to rotate, two fingers to pinch-zoom */
+  const pts=new Map();let pinch=0;
+  const dist=()=>{const q=[...pts.values()];return Math.hypot(q[0][0]-q[1][0],q[0][1]-q[1][1])};
+  canvas.addEventListener('pointerdown',e=>{
+    pts.set(e.pointerId,[e.clientX,e.clientY]);canvas.setPointerCapture(e.pointerId);
+    if(pts.size===1){drag=true;lx=e.clientX;ly=e.clientY;vy=0}
+    else if(pts.size===2){drag=false;pinch=dist()}
+  });
+  canvas.addEventListener('pointermove',e=>{
+    if(!pts.has(e.pointerId))return;
+    pts.set(e.pointerId,[e.clientX,e.clientY]);
+    if(pts.size===2){const d=dist();if(pinch)setZoom(zoomT*d/pinch);pinch=d;return}
+    if(!drag)return;
+    const dxm=e.clientX-lx,dym=e.clientY-ly;lx=e.clientX;ly=e.clientY;
+    vy=dxm*.008;yaw+=vy;
+    if(e.pointerType!=='touch')pitch=clamp(pitch+dym*.006,-.15,1.25);
+  });
+  const up=e=>{
+    pts.delete(e.pointerId);
+    if(pts.size<2)pinch=0;
+    if(pts.size===0)drag=false;
+    else if(pts.size===1){const q=[...pts.values()][0];drag=true;lx=q[0];ly=q[1]}
+  };
+  ['pointerup','pointercancel','lostpointercapture'].forEach(n=>canvas.addEventListener(n,up));
+  canvas.addEventListener('keydown',e=>{
+    const m={ArrowLeft:[-.12,0],ArrowRight:[.12,0],ArrowUp:[0,-.08],ArrowDown:[0,.08]}[e.key];
+    if(m){e.preventDefault();yaw+=m[0];pitch=clamp(pitch+m[1],-.15,1.25)}
+    else if(e.key==='+'||e.key==='='){e.preventDefault();setZoom(zoomT*1.25)}
+    else if(e.key==='-'||e.key==='_'){e.preventDefault();setZoom(zoomT/1.25)}
+  });
+  /* the wheel only zooms in full screen or with Ctrl / pinch, so normal page scrolling is never hijacked */
+  canvas.addEventListener('wheel',e=>{
+    if(!(isFs()||e.ctrlKey||e.metaKey))return;
+    e.preventDefault();setZoom(zoomT*Math.exp(-e.deltaY*.0015));
+  },{passive:false});
+
+  /* full screen (falls back to a fixed overlay where the browser has no element full screen, like iPhone Safari) */
+  let pseudo=false;
+  const fsEl=()=>document.fullscreenElement||document.webkitFullscreenElement;
+  const canFs=!!(stage.requestFullscreen||stage.webkitRequestFullscreen);
+  function isFs(){return fsEl()===stage||pseudo}
+  function fsLabel(){bFs.textContent=isFs()?'Exit full screen':'Full screen'}
+  function pseudoFs(on){pseudo=on;stage.classList.toggle('fs',on);document.documentElement.style.overflow=on?'hidden':'';fsLabel()}
+  bFs.onclick=()=>{
+    if(pseudo){pseudoFs(false);return}
+    if(fsEl()){(document.exitFullscreen||document.webkitExitFullscreen).call(document);return}
+    if(!canFs){pseudoFs(true);return}
+    try{
+      const r=(stage.requestFullscreen||stage.webkitRequestFullscreen).call(stage);
+      if(r&&r.catch)r.catch(()=>pseudoFs(true));
+    }catch(err){pseudoFs(true)}
+  };
+  document.addEventListener('fullscreenchange',fsLabel);
+  document.addEventListener('webkitfullscreenchange',fsLabel);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&pseudo)pseudoFs(false)});
+
+  /* size */
+  let W=1,H=1;
+  function size(){const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;W=w;H=h;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
+  new ResizeObserver(size).observe(canvas);size();
+
+  /* loop */
+  const clock=new T.Clock(),tmp=V(0,0,0);
+  let time=0,P=0,vis=false,seen=false,wasFlow=false,lastRead=0,lastMsg='',lastState='',flowStart=0;
+  const steps=['Water passes all four probes in the pipe.','The boards send their signals to GPIO 34, 35, 32 and 4.','The ESP32 averages 20 ADC readings per sensor.','The display updates every 2 seconds.'];
+  new IntersectionObserver(es=>{
+    vis=es[0].isIntersecting;
+    if(vis&&!seen){seen=true;setTimeout(()=>{target=1;ui()},700)}
+  },{threshold:.2}).observe(stage);
+
+  (function frame(){
+    requestAnimationFrame(frame);
+    if(!vis||document.hidden){clock.getDelta();return}
+    const dl=Math.min(clock.getDelta(),.05);time+=dl;
+    P=clamp(P+(target?1:-1)*dl/(reduce?.01:3.2),0,1);
+
+    parts.forEach(p=>{
+      const e=ease(clamp((P-p.d)/.3,0,1));
+      p.g.position.set(p.home.x+p.off.x*(1-e),p.home.y+p.off.y*(1-e),p.home.z+p.off.z*(1-e));
+      p.fade.forEach(a=>{a[0].opacity=a[1]*(.3+.7*e)});
+    });
+    const wv=ease(clamp((P-.75)/.25,0,1));
+    wires.forEach(w=>{w.m.opacity=wv});wireGrp.visible=wv>.01;
+
+    const flow=flowWanted&&P>.985;
+    if(flow!==wasFlow){wasFlow=flow;dots.visible=flow;flowStart=time;$('#sy-read').hidden=!flow}
+    const st=flow?(time-flowStart<5?'SETTLING':'MEASURING'):'NO SAMPLE';
+    if(st!==lastState){
+      lastState=st;lastRead=-9;$('#sy-st').textContent=st;
+      if(st!=='MEASURING'){drawDisp(st,null);['sy-ph','sy-tds','sy-nt','sy-t'].forEach(id=>{$('#'+id).textContent='--'})}
+    }
+    if(flow){
+      wt.offset.y+=dl*.9;
+      for(let i=0;i<N;i++){
+        let x=pp[i*3]+pv[i]*dl*2.2;if(x>4.5)x=-4.5;pp[i*3]=x;
+        pp[i*3+1]+=Math.sin(time*3+i)*.0008;
+      }
+      pg.attributes.position.needsUpdate=true;
+      if(st==='MEASURING'&&time-lastRead>2){
+        lastRead=time;const v=vals(time);drawDisp(st,v);
+        $('#sy-ph').textContent=v.ph.toFixed(2)+' V';$('#sy-tds').textContent=v.tds.toFixed(2)+' V';
+        $('#sy-nt').textContent=v.nt.toFixed(2)+' V';$('#sy-t').textContent=v.t.toFixed(1)+' C';
+      }
+    }
+    boards.forEach((b,i)=>{b.mat.emissiveIntensity=flow?.22+.2*Math.sin(time*5+i*1.4):0});
+    pulses.forEach((m,j)=>{
+      m.visible=flow&&wv>.95;
+      if(m.visible)m.position.copy(wires[j].curve.getPoint((time*.45+j*.19)%1));
+    });
+
+    let text;
+    if(flow)text=st==='SETTLING'?'Sample detected. The firmware waits 5 seconds for it to settle.':steps[Math.floor((time-flowStart-5)/2.6)%4];
+    else if(P<.02)text='Taken apart: pipe, plate, sensor boards, ESP32, display and USB port.';
+    else if(P>.985)text='Assembled. Press Water flow to see it work.';
+    else text=target?'Putting it together...':'Taking it apart...';
+    if(text!==lastMsg){lastMsg=text;msg.textContent=text}
+
+    zoom+=(zoomT-zoom)*Math.min(1,dl*10);
+    const zp=Math.round(zoom*100)+'%';if(zp!==zv.textContent)zv.textContent=zp;
+    if(!drag){yaw+=vy;vy*=.92;if(spin)yaw+=dl*.4}
+    const ce=ease(P),yv=yaw,r=Math.max(14.5-4*ce,(18-4.5*ce)/camera.aspect)/zoom;
+    camera.position.set(Math.sin(yv)*Math.cos(pitch)*r,.4+Math.sin(pitch)*r,Math.cos(yv)*Math.cos(pitch)*r);
+    camera.lookAt(0,.4,0);
+    renderer.render(scene,camera);
+    lab.forEach(l=>{
+      tmp.copy(l.o);l.p.g.localToWorld(tmp);tmp.project(camera);
+      l.el.style.left=((tmp.x*.5+.5)*W)+'px';l.el.style.top=((-tmp.y*.5+.5)*H)+'px';
+      l.el.style.display=tmp.z>1?'none':'';
+    });
+  })();
+  ui();
+}
+</script>
+</body>
+</html>
