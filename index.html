@@ -106,6 +106,8 @@ h2::after{content:"";flex:1;height:1px;background:var(--border)}
 .tag{font-family:'JetBrains Mono',monospace;font-size:.75rem;background:var(--bg);color:var(--text-muted);padding:.2rem .5rem;border-radius:4px;border:1px solid var(--border)}
 .item-action{position:relative;z-index:1;justify-self:end;padding-top:.55rem!important;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--accent);text-decoration:none;white-space:nowrap;font-weight:500;padding:.25rem 0}
 .item-action:hover{text-decoration:underline}
+.item-links{position:relative;z-index:1;justify-self:end;display:flex;flex-direction:column;align-items:flex-end;gap:.1rem;padding-top:.45rem}
+.item-links .item-action{padding-top:.2rem!important;justify-self:auto}
 .empty{display:none;color:var(--text-muted);font-size:.95rem;padding:1rem 0}
 
 /* tech */
@@ -214,6 +216,7 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
   .hero-inner{gap:1rem}.hero-3d{height:320px}
   .contact,.about-wrap{gap:1.5rem}
   .item-card{grid-template-columns:1fr;gap:1rem}
+  .item-links{flex-direction:row;gap:1.25rem;justify-self:start;align-items:center;padding-top:0}
   .ledger-row{grid-template-columns:1fr;gap:.35rem}
 }
 @media (max-width:640px){
@@ -295,13 +298,16 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
     </div>
 
     <div class="item-list" id="list">
-      <article class="item-card" data-cat="backend wip">
+      <article class="item-card" data-cat="iot">
         <div class="item-content">
-          <h3><a class="card-link" href="#project-icms">Integrated Company Management System</a> <span class="badge">in progress</span></h3>
-          <p>A Python and MySQL system that simulates how a company manages its people, money, projects and facilities.</p>
+          <h3><a class="card-link" href="#project-shiyank">Shiyank</a></h3>
+          <p>An IoT water-testing device that reads sensors and shows the results on a display.</p>
+          <div class="with">Team of 5: <b>Manshi Dwivedi, Purnima Rajwade, Shivani Dhama, Jyoti Mishra</b></div>
         </div>
-        <div class="meta-tags"><span class="tag">Python</span><span class="tag">MySQL</span></div>
-        <a href="https://github.com/sdm2007/Integrated-Company-Management-System-ICMS-" class="item-action" target="_blank" rel="noopener noreferrer">Source &nearr;</a>
+        <div class="meta-tags"><span class="tag">C++</span><span class="tag">ESP32</span><span class="tag">Microcontrollers</span></div>
+        <div class="item-links">
+          <a href="https://wokwi.com/projects/479492563395301377" class="item-action" target="_blank" rel="noopener noreferrer">Simulation &nearr;</a>
+        </div>
       </article>
 
       <article class="item-card" data-cat="web backend">
@@ -311,7 +317,10 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
           <div class="with">Terms, privacy policy &amp; marketing by <b>Jyoti Mishra</b></div>
         </div>
         <div class="meta-tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Supabase</span><span class="tag">Render</span></div>
-        <a href="https://jamghat.thesrock.in" class="item-action" target="_blank" rel="noopener noreferrer">Live app &nearr;</a>
+        <div class="item-links">
+          <a href="https://jamghat.thesrock.in" class="item-action" target="_blank" rel="noopener noreferrer">Live app &nearr;</a>
+          <a href="https://github.com/sdm2007/jamghat" class="item-action" target="_blank" rel="noopener noreferrer">GitHub &nearr;</a>
+        </div>
       </article>
 
       <article class="item-card" data-cat="web">
@@ -320,17 +329,10 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
           <p>A JEE study companion that tracks study time, tasks, syllabus progress, reports and exams.</p>
         </div>
         <div class="meta-tags"><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">Chart.js</span><span class="tag">Supabase</span></div>
-        <a href="https://sdm2007.github.io/kozy/" class="item-action" target="_blank" rel="noopener noreferrer">Live demo &nearr;</a>
-      </article>
-
-      <article class="item-card" data-cat="iot">
-        <div class="item-content">
-          <h3><a class="card-link" href="#project-shiyank">Shiyank</a></h3>
-          <p>An IoT water-testing device that reads sensors and shows the results on a display.</p>
-          <div class="with">Team of 5: <b>Manshi Dwivedi, Purnima Rajwade, Shivani Dhama, Jyoti Mishra</b></div>
+        <div class="item-links">
+          <a href="https://sdm2007.github.io/kozy/" class="item-action" target="_blank" rel="noopener noreferrer">Live demo &nearr;</a>
+          <a href="https://github.com/sdm2007/kozy" class="item-action" target="_blank" rel="noopener noreferrer">GitHub &nearr;</a>
         </div>
-        <div class="meta-tags"><span class="tag">C++</span><span class="tag">ESP32</span><span class="tag">Microcontrollers</span></div>
-        <a href="https://wokwi.com/projects/479492563395301377" class="item-action" target="_blank" rel="noopener noreferrer">Simulation &nearr;</a>
       </article>
 
       <article class="item-card" data-cat="web backend wip">
@@ -340,7 +342,20 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
           <div class="with">Terms, privacy policy &amp; marketing by <b>Jyoti Mishra</b></div>
         </div>
         <div class="meta-tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MySQL</span><span class="tag">Claude API</span></div>
-        <a href="https://github.com/sdm2007/learnocrat" class="item-action" target="_blank" rel="noopener noreferrer">Source &nearr;</a>
+        <div class="item-links">
+          <a href="https://github.com/sdm2007/learnocrat" class="item-action" target="_blank" rel="noopener noreferrer">GitHub &nearr;</a>
+        </div>
+      </article>
+
+      <article class="item-card" data-cat="backend wip">
+        <div class="item-content">
+          <h3><a class="card-link" href="#project-icms">Integrated Company Management System</a> <span class="badge">in progress</span></h3>
+          <p>A Python and MySQL system that simulates how a company manages its people, money, projects and facilities.</p>
+        </div>
+        <div class="meta-tags"><span class="tag">Python</span><span class="tag">MySQL</span></div>
+        <div class="item-links">
+          <a href="https://github.com/sdm2007/Integrated-Company-Management-System-ICMS-" class="item-action" target="_blank" rel="noopener noreferrer">GitHub &nearr;</a>
+        </div>
       </article>
     </div>
     <p class="empty" id="empty">No projects in this category yet.</p>
@@ -391,7 +406,7 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
   <section><h2>Built with</h2><div class="tech"><span class="tag">Python</span><span class="tag">MySQL</span></div></section>
   <nav class="pn" aria-label="More projects">
     <a href="#project-learnocrat"><small>Previous</small><b>Learnocrat</b></a>
-    <a class="next" href="#project-jamghat"><small>Next</small><b>jamGhat</b></a>
+    <a class="next" href="#project-shiyank"><small>Next</small><b>Shiyank</b></a>
   </nav></main></div>
 
 <div class="view" id="project-jamghat" hidden><main class="detail"><p class="crumb"><a href="#projects">Projects</a> / jamGhat</p>
@@ -407,7 +422,7 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
   </div></section>
   <section><h2>Built with</h2><div class="tech"><span class="tag">React</span><span class="tag">Vite</span><span class="tag">Tailwind CSS</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">PostgreSQL</span><span class="tag">Supabase</span><span class="tag">Leaflet</span><span class="tag">Render</span></div></section>
   <nav class="pn" aria-label="More projects">
-    <a href="#project-icms"><small>Previous</small><b>Integrated Company Management System</b></a>
+    <a href="#project-shiyank"><small>Previous</small><b>Shiyank</b></a>
     <a class="next" href="#project-kozy"><small>Next</small><b>Kozy</b></a>
   </nav></main></div>
 
@@ -422,7 +437,7 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
   <section><h2>Built with</h2><div class="tech"><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">Chart.js</span><span class="tag">Supabase</span><span class="tag">GitHub Pages</span></div></section>
   <nav class="pn" aria-label="More projects">
     <a href="#project-jamghat"><small>Previous</small><b>jamGhat</b></a>
-    <a class="next" href="#project-shiyank"><small>Next</small><b>Shiyank</b></a>
+    <a class="next" href="#project-learnocrat"><small>Next</small><b>Learnocrat</b></a>
   </nav></main></div>
 
 <div class="view" id="project-shiyank" hidden><main class="detail"><p class="crumb"><a href="#projects">Projects</a> / Shiyank</p>
@@ -508,8 +523,8 @@ if (sampleState == SETTLING &amp;&amp; millis() - sampleStartTime &gt;= SETTLING
 
   <section><h2>Built with</h2><div class="tech"><span class="tag">C++ (Arduino)</span><span class="tag">ESP32</span><span class="tag">Microcontrollers</span><span class="tag">DS18B20</span><span class="tag">SSD1306 OLED</span><span class="tag">Wokwi</span></div></section>
   <nav class="pn" aria-label="More projects">
-    <a href="#project-kozy"><small>Previous</small><b>Kozy</b></a>
-    <a class="next" href="#project-learnocrat"><small>Next</small><b>Learnocrat</b></a>
+    <a href="#project-icms"><small>Previous</small><b>Integrated Company Management System</b></a>
+    <a class="next" href="#project-jamghat"><small>Next</small><b>jamGhat</b></a>
   </nav></main></div>
 
 <div class="view" id="project-learnocrat" hidden><main class="detail"><p class="crumb"><a href="#projects">Projects</a> / Learnocrat</p>
@@ -525,7 +540,7 @@ if (sampleState == SETTLING &amp;&amp; millis() - sampleStartTime &gt;= SETTLING
   </div></section>
   <section><h2>Built with</h2><div class="tech"><span class="tag">React</span><span class="tag">Vite</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MySQL</span><span class="tag">Tesseract.js</span><span class="tag">Claude API</span><span class="tag">JWT</span></div></section>
   <nav class="pn" aria-label="More projects">
-    <a href="#project-shiyank"><small>Previous</small><b>Shiyank</b></a>
+    <a href="#project-kozy"><small>Previous</small><b>Kozy</b></a>
     <a class="next" href="#project-icms"><small>Next</small><b>Integrated Company Management System</b></a>
   </nav></main></div>
 
