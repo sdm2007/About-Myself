@@ -493,10 +493,24 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
   <section><h2>Team</h2><div class="team">
     <span class="person"><i aria-hidden="true">DS</i><span class="who">Disha Saini<small>CSE student</small></span></span>
     <span class="person"><i aria-hidden="true">MD</i><span class="who">Manshi Dwivedi<small>Data Science student</small></span></span>
-    <span class="person"><i aria-hidden="true">PR</i><span class="who">Purnima Rajwade<small>CSE student</small></span></span>
+    <span class="person"><i aria-hidden="true">PR</i><span class="who">Purnima Rajwade<small>CSE &amp; IoT software developer</small></span></span>
     <span class="person"><i aria-hidden="true">SD</i><span class="who">Shivani Dhama<small>Mechanical Engineering student</small></span></span>
     <span class="person"><i aria-hidden="true">JM</i><span class="who">Jyoti Mishra<small>ECE student</small></span></span>
   </div></section>
+
+  <section><h2>Software, cloud and dashboard</h2>
+    <p class="table-note" style="margin:-.5rem 0 1.5rem">Built by Purnima Rajwade, CSE &amp; IoT software developer.</p>
+    <div class="states" aria-label="Data pipeline"><span>Sensors</span><i>&rarr;</i><span>ESP32</span><i>&rarr;</i><span>Wi-Fi</span><i>&rarr;</i><span>API</span><i>&rarr;</i><span>Firebase</span><i>&rarr;</i><span>Dashboard</span></div>
+    <ul class="feat">
+      <li><b>ESP32 programming.</b> Reads the pH, TDS, turbidity, temperature and flow sensors, processes the raw values and controls the OLED display.</li>
+      <li><b>IoT connectivity.</b> Sets up Wi-Fi on the ESP32 and sends sensor readings from the device to the cloud through an API.</li>
+      <li><b>Database and API.</b> Designs the data structure for Shiyank and stores readings in Firebase Realtime Database, with the API link between the ESP32 and Firebase.</li>
+      <li><b>Web dashboard.</b> An HTML, CSS and JavaScript interface showing pH, TDS, turbidity, temperature, flow rate and total water usage, with graphs and history for trends.</li>
+      <li><b>Alerts.</b> Software thresholds flag readings outside the configured ranges and show warnings on the dashboard. These are monitoring indications, not proof that water is safe or unsafe to drink.</li>
+      <li><b>System integration.</b> Connects the whole data pipeline from sensors to dashboard.</li>
+      <li><b>Testing and documentation.</b> Tests sensor readings and data transmission, debugs the ESP32 and website code, and documents the software architecture, database structure, API flow and how the system works.</li>
+    </ul>
+  </section>
 
   <section><h2>How the box is arranged</h2><ul class="feat"><li><b>Wet side (back).</b> The pipe runs from the inlet on one side to the outlet on the other. All four probes sit inside it through sealed fittings.</li><li><b>Partition plate.</b> Separates the pipe from the circuit. The sensor boards are mounted on its dry face, so only the probes touch water.</li><li><b>Dry side (front).</b> The ESP32 reads the sensor boards and drives the front display. A USB port on the side supplies 5 V.</li></ul></section>
 
