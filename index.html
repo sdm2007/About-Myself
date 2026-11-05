@@ -317,7 +317,7 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
         <div class="item-content">
           <h3><a class="card-link" href="#project-shiyank">Shiyank</a></h3>
           <p>An IoT water-testing device that reads sensors and shows the results on a display.</p>
-          <div class="with">Team of 5: <b>Manshi Dwivedi, Purnima Rajwade, Shivani Dhama, Jyoti Mishra</b></div>
+          <div class="with">Team lead, with <b>Manshi Dwivedi, Purnima Rajwade, Shivani Dhama, Jyoti Mishra</b></div>
         </div>
         <div class="meta-tags"><span class="tag">C++</span><span class="tag">ESP32</span><span class="tag">Microcontrollers</span></div>
         <div class="item-links">
@@ -491,15 +491,15 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
   <section><h2>Overview</h2><div class="two"><p class="body">Shiyank is a team prototype of a water quality tester. Water runs through a pipe past four probes: pH, TDS, turbidity and temperature. An ESP32 reads them and shows the results on a display on the front of the box.</p><p class="body">It is an educational screening prototype, not a certified drinking-water safety device. Hardness is tested separately with a drop-test kit, because a TDS sensor cannot give calcium or magnesium hardness.</p></div></section>
 
   <section><h2>Team</h2><div class="team">
-    <span class="person"><i aria-hidden="true">DS</i><span class="who">Disha Saini<small>CSE student</small></span></span>
-    <span class="person"><i aria-hidden="true">MD</i><span class="who">Manshi Dwivedi<small>Data Science student</small></span></span>
-    <span class="person"><i aria-hidden="true">PR</i><span class="who">Purnima Rajwade<small>CSE &amp; IoT software developer</small></span></span>
-    <span class="person"><i aria-hidden="true">SD</i><span class="who">Shivani Dhama<small>Mechanical Engineering student</small></span></span>
-    <span class="person"><i aria-hidden="true">JM</i><span class="who">Jyoti Mishra<small>ECE student</small></span></span>
+    <span class="person"><i aria-hidden="true">DS</i><span class="who">Disha Saini<small>Team lead and architect</small></span></span>
+    <span class="person"><i aria-hidden="true">MD</i><span class="who">Manshi Dwivedi<small>Data analysis and research</small></span></span>
+    <span class="person"><i aria-hidden="true">PR</i><span class="who">Purnima Rajwade<small>IoT Software Developer</small></span></span>
+    <span class="person"><i aria-hidden="true">SD</i><span class="who">Shivani Dhama<small>Original project idea</small></span></span>
+    <span class="person"><i aria-hidden="true">JM</i><span class="who">Jyoti Mishra<small>3D diagram</small></span></span>
   </div></section>
 
   <section><h2>Software, cloud and dashboard</h2>
-    <p class="table-note" style="margin:-.5rem 0 1.5rem">Built by Purnima Rajwade, CSE &amp; IoT software developer.</p>
+    <p class="table-note" style="margin:-.5rem 0 1.5rem">Coded by Disha Saini and Purnima Rajwade.</p>
     <div class="states" aria-label="Data pipeline"><span>Sensors</span><i>&rarr;</i><span>ESP32</span><i>&rarr;</i><span>Wi-Fi</span><i>&rarr;</i><span>API</span><i>&rarr;</i><span>Firebase</span><i>&rarr;</i><span>Dashboard</span></div>
     <ul class="feat">
       <li><b>ESP32 programming.</b> Reads the pH, TDS, turbidity, temperature and flow sensors, processes the raw values and controls the OLED display.</li>
@@ -892,18 +892,22 @@ function initShiyank(){
   bZo.onclick=()=>setZoom(zoomT/1.25);
 
   /* drag to rotate, two fingers to pinch-zoom */
-  const pts=new Map();let pinch=0;
+  const pts=new Map();let pinch=0,armed=false,sx=0,sy=0;
   const dist=()=>{const q=[...pts.values()];return Math.hypot(q[0][0]-q[1][0],q[0][1]-q[1][1])};
   canvas.addEventListener('pointerdown',e=>{
     pts.set(e.pointerId,[e.clientX,e.clientY]);canvas.setPointerCapture(e.pointerId);
-    if(pts.size===1){drag=true;lx=e.clientX;ly=e.clientY;vy=0}
-    else if(pts.size===2){drag=false;pinch=dist()}
+    if(pts.size===1){armed=true;sx=lx=e.clientX;sy=ly=e.clientY}
+    else if(pts.size===2){armed=false;drag=false;pinch=dist()}
   });
   canvas.addEventListener('pointermove',e=>{
     if(!pts.has(e.pointerId))return;
     pts.set(e.pointerId,[e.clientX,e.clientY]);
     if(pts.size===2){const d=dist();if(pinch)setZoom(zoomT*d/pinch);pinch=d;return}
-    if(!drag)return;
+    if(!drag){
+      /* a press only becomes a drag after it moves a few pixels, so a plain click never interrupts the rotation */
+      if(!armed||Math.hypot(e.clientX-sx,e.clientY-sy)<=6)return;
+      drag=true;armed=false;vy=0;lx=e.clientX;ly=e.clientY;return;
+    }
     const dxm=e.clientX-lx,dym=e.clientY-ly;lx=e.clientX;ly=e.clientY;
     vy=dxm*.008;yaw+=vy;
     if(e.pointerType!=='touch')pitch=clamp(pitch+dym*.006,-.15,1.25);
@@ -911,7 +915,7 @@ function initShiyank(){
   const up=e=>{
     pts.delete(e.pointerId);
     if(pts.size<2)pinch=0;
-    if(pts.size===0)drag=false;
+    if(pts.size===0){drag=false;armed=false}
     else if(pts.size===1){const q=[...pts.values()][0];drag=true;lx=q[0];ly=q[1]}
   };
   ['pointerup','pointercancel','lostpointercapture'].forEach(n=>canvas.addEventListener(n,up));
