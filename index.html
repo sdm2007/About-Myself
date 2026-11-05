@@ -206,6 +206,21 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
 .stage:-webkit-full-screen canvas{height:auto;flex:1;min-height:0}
 @media (max-width:640px){.steps{grid-template-columns:1fr}.stage-note{margin-left:0;width:100%}.readout{font-size:.68rem;padding:.45rem .6rem}.stage-msg{top:auto;bottom:4.6rem;left:.8rem;max-width:70%}}
 
+/* click-a-part info card */
+.lbl{pointer-events:auto;cursor:pointer}
+.nolabels .lbl{pointer-events:none}
+.lbl.sel{background:var(--accent);border-color:var(--accent);color:#fff}
+.infocard{position:absolute;left:1rem;top:4.4rem;width:min(22rem,calc(100% - 2rem));background:rgba(255,255,255,.96);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.1rem 1.05rem;box-shadow:0 8px 28px rgba(0,0,0,.08);z-index:2}
+.infocard[hidden]{display:none}
+.infocard small{display:inline-block;font:500 .72rem 'JetBrains Mono',monospace;color:var(--accent);background:var(--accent-light);border:1px solid rgba(13,148,136,.2);border-radius:100px;padding:.1rem .5rem;margin-bottom:.45rem}
+.infocard h3{font-size:1.15rem;font-weight:600;letter-spacing:-.01em;margin-bottom:.5rem;padding-right:1.5rem}
+.infocard p{font-size:.9rem;color:var(--text-muted);line-height:1.55;margin-top:.5rem}
+.infocard p b{display:block;font:500 .72rem 'JetBrains Mono',monospace;color:var(--text-main);margin-bottom:.1rem}
+.ic-x{position:absolute;right:.6rem;top:.5rem;width:1.8rem;height:1.8rem;border:0;background:none;font-size:1.3rem;line-height:1;color:var(--text-muted);cursor:pointer;border-radius:50%}
+.ic-x:hover{background:var(--surface-hover);color:var(--text-main)}
+.has-info .stage-msg{display:none}
+@media (max-width:640px){.infocard{top:auto;bottom:4.6rem}}
+
 /* scroll reveal: fades in on the way down, fades out when you scroll back up past it */
 .js .reveal{opacity:0;transform:translateY(24px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
 .js .item-card.reveal{transition:opacity .75s var(--ease),transform .75s var(--ease),padding .2s}
@@ -448,10 +463,17 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
 
   <section><h2>See how it works</h2>
     <div class="stage" id="sy3d">
-      <canvas id="sy-canvas" tabindex="0" role="img" aria-label="Interactive 3D model of the Shiyank water quality tester. Drag or use the arrow keys to rotate it."></canvas>
+      <canvas id="sy-canvas" tabindex="0" role="img" aria-label="Interactive 3D model of the Shiyank water quality tester. Drag or use the arrow keys to rotate it. Click a part to learn about it."></canvas>
       <div class="labels" id="sy-labels" aria-hidden="true"></div>
       <p class="stage-msg" id="sy-msg" aria-live="polite">Drag to turn the model.</p>
       <div class="readout" id="sy-read" hidden><span>Status</span><b id="sy-st">NO SAMPLE</b><span>pH</span><b id="sy-ph">--</b><span>TDS</span><b id="sy-tds">--</b><span>Turbidity</span><b id="sy-nt">--</b><span>Temp</span><b id="sy-t">--</b><small>sample values, in volts like the real firmware</small></div>
+      <aside class="infocard" id="sy-info" hidden aria-live="polite">
+        <button class="ic-x" id="sy-info-x" type="button" aria-label="Close">&times;</button>
+        <small id="sy-i-tag"></small>
+        <h3 id="sy-i-name"></h3>
+        <p><b>What it does</b><span id="sy-i-what"></span></p>
+        <p><b>In Shiyank</b><span id="sy-i-how"></span></p>
+      </aside>
       <div class="stage-bar">
         <button class="btn" id="sy-asm" type="button" aria-pressed="false">Assemble</button>
         <button class="btn" id="sy-dis" type="button" aria-pressed="true">Disassemble</button>
@@ -461,7 +483,7 @@ footer{border-top:1px solid var(--border);padding-top:2rem;font-size:.85rem;colo
         <span class="zoomset" role="group" aria-label="Zoom"><button class="btn" id="sy-zout" type="button" aria-label="Zoom out" title="Zoom out">&minus;</button><span id="sy-zv">100%</span><button class="btn" id="sy-zin" type="button" aria-label="Zoom in" title="Zoom in">+</button></span>
         <button class="btn" id="sy-reset" type="button">Reset view</button>
         <button class="btn" id="sy-fs" type="button">Full screen</button>
-        <span class="stage-note">Drag to rotate, pinch or Ctrl + scroll to zoom. Readings are sample values.</span>
+        <span class="stage-note">Click any part to learn about it. Drag to rotate, pinch or Ctrl + scroll to zoom. Readings are sample values.</span>
       </div>
     </div>
   </section>
@@ -911,6 +933,69 @@ function initShiyank(){
   document.addEventListener('webkitfullscreenchange',fsLabel);
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&pseudo)pseudoFs(false)});
 
+  /* click a part to see what it is */
+  const INFO={
+    ph:{name:'pH sensor',tag:'GPIO 34 (ADC)',
+      what:'Measures how acidic or alkaline the water is, on a scale of 0 to 14. Pure neutral water is about 7, and drinking water is usually between 6.5 and 8.5.',
+      how:'The glass probe makes a tiny voltage that changes with the acidity. The interface board boosts it to 0 to 3.3 V so the ESP32 can read it. It needs calibrating with pH 4 and pH 7 buffer solutions.'},
+    tds:{name:'TDS sensor',tag:'GPIO 35 (ADC)',
+      what:'Estimates Total Dissolved Solids, meaning the salts and minerals dissolved in the water, in ppm. A higher value means more dissolved material.',
+      how:'Two electrodes pass a small current through the water and the board measures how well it conducts. It cannot say which substances are dissolved, and it cannot give calcium or magnesium hardness, which is why hardness is tested with a drop kit.'},
+    turb:{name:'Turbidity sensor',tag:'GPIO 32 (ADC)',
+      what:'Measures how cloudy the water is. Mud, silt and tiny particles make water hazy even when it looks harmless.',
+      how:'Light shines through the water to a light detector. More suspended particles scatter the light, so less reaches the detector and the output voltage changes. Calibration turns that voltage into a turbidity value.'},
+    temp:{name:'DS18B20 temperature sensor',tag:'GPIO 4 + 4.7 k\u03A9 pull-up',
+      what:'A waterproof digital thermometer. It reports the water temperature in degrees Celsius.',
+      how:'It talks to the ESP32 over a single data wire (1-Wire). If it is unplugged, the display and Serial Monitor show an error instead of a number. Temperature also affects pH and TDS readings, so it is useful for correcting them.'},
+    esp:{name:'ESP32',tag:'Microcontroller',
+      what:'The brain of the device. It reads the sensors, runs the program and drives the display.',
+      how:'It averages 20 ADC readings per sensor, converts them to volts, and runs the NO SAMPLE, SETTLING and MEASURING cycle. Results go to the OLED and the Serial Monitor.'},
+    display:{name:'OLED display',tag:'I\u00B2C: SDA 21, SCL 22',
+      what:'Shows the status and sensor readings on the front of the box.',
+      how:'A 128\u00D764 SSD1306 screen at I\u00B2C address 0x3C. It updates every 2 seconds while measuring.'},
+    pipe:{name:'Water pipe',tag:'Wet side',
+      what:'Carries the water sample from the inlet, past all four probes, to the outlet.',
+      how:'The probes enter the pipe through sealed fittings, so only the probes touch water.'},
+    plate:{name:'Partition plate',tag:'Wet / dry divider',
+      what:'Separates the wet pipe from the electronics.',
+      how:'The sensor boards are mounted on its dry face, which keeps the ESP32, wiring and display safe from water.'},
+    usb:{name:'USB power port',tag:'5 V',
+      what:'Supplies power to the whole device.',
+      how:'5 V comes in over USB. Each module then gets 3.3 V or 5 V as its datasheet says.'}
+  };
+  pipe.key='pipe';plate.key='plate';esp.key='esp';disp.key='display';usb.key='usb';
+  boards.forEach((b,i)=>{b.key=['ph','tds','turb','temp'][i]});
+
+  const pick=[];
+  parts.forEach(p=>{if(p.key)p.g.traverse(o=>{if(o.isMesh){o.userData.part=p;pick.push(o)}})});
+  const ray=new T.Raycaster(),ndc=new T.Vector2(),card=$('#sy-info');
+  let sel=null;
+  function select(p){
+    sel=p;stage.classList.toggle('has-info',!!p);card.hidden=!p;
+    if(!p)return;
+    const d=INFO[p.key];
+    $('#sy-i-tag').textContent=d.tag;$('#sy-i-name').textContent=d.name;
+    $('#sy-i-what').textContent=d.what;$('#sy-i-how').textContent=d.how;
+  }
+  $('#sy-info-x').onclick=()=>select(null);
+  lab.forEach(l=>l.el.addEventListener('click',()=>select(l.p)));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&sel)select(null)});
+
+  /* a click is a short press with almost no movement, so dragging to rotate never selects anything */
+  let down=null;
+  canvas.addEventListener('pointerdown',e=>{down=pts.size===1?{x:e.clientX,y:e.clientY,t:performance.now()}:null});
+  canvas.addEventListener('pointerup',e=>{
+    if(!down)return;
+    const moved=Math.hypot(e.clientX-down.x,e.clientY-down.y),quick=performance.now()-down.t<600;
+    down=null;
+    if(moved>6||!quick)return;
+    const r=canvas.getBoundingClientRect();
+    ndc.set(((e.clientX-r.left)/r.width)*2-1,-((e.clientY-r.top)/r.height)*2+1);
+    ray.setFromCamera(ndc,camera);
+    const h=ray.intersectObjects(pick,false)[0];
+    select(h?h.object.userData.part:null);
+  });
+
   /* size */
   let W=1,H=1;
   function size(){const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;W=w;H=h;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
@@ -935,6 +1020,7 @@ function initShiyank(){
       const e=ease(clamp((P-p.d)/.3,0,1));
       p.g.position.set(p.home.x+p.off.x*(1-e),p.home.y+p.off.y*(1-e),p.home.z+p.off.z*(1-e));
       p.fade.forEach(a=>{a[0].opacity=a[1]*(.3+.7*e)});
+      p.g.scale.setScalar(p===sel?1.05:1);
     });
     const wv=ease(clamp((P-.75)/.25,0,1));
     wires.forEach(w=>{w.m.opacity=wv});wireGrp.visible=wv>.01;
@@ -959,7 +1045,7 @@ function initShiyank(){
         $('#sy-nt').textContent=v.nt.toFixed(2)+' V';$('#sy-t').textContent=v.t.toFixed(1)+' C';
       }
     }
-    boards.forEach((b,i)=>{b.mat.emissiveIntensity=flow?.22+.2*Math.sin(time*5+i*1.4):0});
+    boards.forEach((b,i)=>{b.mat.emissiveIntensity=b===sel?.6:(flow?.22+.2*Math.sin(time*5+i*1.4):0)});
     pulses.forEach((m,j)=>{
       m.visible=flow&&wv>.95;
       if(m.visible)m.position.copy(wires[j].curve.getPoint((time*.45+j*.19)%1));
@@ -983,6 +1069,7 @@ function initShiyank(){
       tmp.copy(l.o);l.p.g.localToWorld(tmp);tmp.project(camera);
       l.el.style.left=((tmp.x*.5+.5)*W)+'px';l.el.style.top=((-tmp.y*.5+.5)*H)+'px';
       l.el.style.display=tmp.z>1?'none':'';
+      l.el.classList.toggle('sel',l.p===sel);
     });
   })();
   ui();
